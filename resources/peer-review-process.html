@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Peer Review Process - Naman's Hub</title>
+    <style>
+        /* --- Basic Reset & Body Styling --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+             scroll-behavior: smooth; /* Smooth scrolling for any internal links */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7; /* Slightly increased line height for readability */
+            color: #343a40; /* Darker gray */
+            background-color: #f1f3f5; /* Lighter gray background */
+            padding: 0; /* Remove body padding, container handles it */
+            overflow-x: hidden; /* Prevent horizontal scrollbars during animations */
+        }
+
+        /* --- Container --- */
+        .container {
+            max-width: 960px; /* Slightly wider */
+            margin: 40px auto;
+            background: linear-gradient(135deg, #ffffff 0%, #fefefe 100%); /* Subtle gradient */
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-top: 6px solid #007bff; /* Changed accent color to blue */
+        }
+
+        /* --- Header --- */
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .page-header h1 {
+            color: #0056b3; /* Darker blue */
+            font-size: 2.8em; /* Larger title */
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .page-header .intro-text {
+            color: #555;
+            font-size: 1.15em; /* Slightly larger intro */
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .page-header .intro-text strong {
+             color: #007bff; /* Blue highlight */
+             font-weight: 600;
+        }
+
+        /* --- Enhanced Timeline Styling --- */
+        .timeline-container {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        /* The Vertical Line - Enhanced */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 40px; /* Position based on icon size/padding */
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #007bff, #a1c4fd); /* Gradient line */
+            border-radius: 2px;
+            z-index: 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px; /* Increased spacing */
+            padding-left: 100px; /* Space for icon + extra padding */
+            opacity: 0; /* Initially hidden for animation */
+            transform: translateY(60px); /* Start slightly lower */
+            transition: opacity 0.6s ease-out, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth animation */
+        }
+
+        /* Class added by JS when item is in view */
+        .timeline-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Step Icon (Circle with Number) */
+        .timeline-icon {
+            content: '';
+            position: absolute;
+            left: 15px; /* Adjust positioning relative to line */
+            top: 0; /* Align with top of content */
+            width: 50px;
+            height: 50px;
+            background-color: #007bff; /* Blue background */
+            color: white;
+            border: 4px solid #f1f3f5; /* Match page background for 'cutout' effect */
+            border-radius: 50%;
+            z-index: 1; /* Ensure icon is above the line */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.3); /* Subtle glow */
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-icon {
+             transform: scale(1.1); /* Scale icon on hover */
+             background-color: #0056b3; /* Darken on hover */
+        }
+
+
+        .timeline-content {
+            background-color: #ffffff;
+            padding: 25px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+            position: relative; /* For potential pseudo-elements like arrows */
+            border-left: 4px solid #a1c4fd; /* Lighter blue accent */
+             transition: box-shadow 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-content {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12); /* Enhance shadow on hover */
+        }
+
+        .timeline-content h3 {
+            color: #0056b3; /* Dark Blue */
+            margin-bottom: 12px;
+            font-weight: 600;
+            font-size: 1.35em; /* Larger step title */
+        }
+
+        .timeline-content p {
+            color: #495057; /* Slightly darker text */
+            margin-bottom: 15px;
+        }
+
+        .timeline-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+            color: #495057;
+            list-style-type: none; /* Remove default bullets */
+            padding-left: 0;
+        }
+         .timeline-content li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px; /* Space for custom bullet */
+         }
+        /* Custom Bullet */
+         .timeline-content li::before {
+            content: '✓'; /* Checkmark or other icon */
+            position: absolute;
+            left: 0;
+            top: 1px;
+            color: #007bff; /* Blue checkmark */
+            font-weight: bold;
+            font-size: 1.1em;
+         }
+
+         .timeline-content strong {
+             color: #0056b3;
+             font-weight: 600;
+         }
+
+         .timeline-duration {
+             display: block;
+             font-size: 0.9em;
+             color: #6c757d; /* Gray color for duration */
+             font-style: italic;
+             margin-top: 10px;
+         }
+
+
+        /* --- Additional Info Sections --- */
+        .info-section {
+            margin-top: 50px;
+            padding: 30px;
+            background-color: #e7f3ff; /* Light blue background */
+            border-radius: 8px;
+            border-left: 5px solid #007bff;
+            opacity: 0; /* For scroll animation */
+            transform: translateY(40px); /* For scroll animation */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .info-section.is-visible {
+             opacity: 1;
+            transform: translateY(0);
+        }
+
+        .info-section h2 {
+            color: #0056b3;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .info-section p, .info-section ul {
+            color: #343a40;
+        }
+         .info-section li {
+            margin-bottom: 10px;
+             list-style-position: inside;
+             padding-left: 5px;
+         }
+
+        /* --- Footer Contact --- */
+        .contact-info {
+            margin-top: 60px;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px dashed #ced4da;
+            color: #6c757d;
+            font-size: 0.95em;
+        }
+        .contact-info p {
+            margin-bottom: 8px;
+        }
+         .contact-info a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+         }
+        .contact-info a:hover {
+            text-decoration: underline;
+            color: #0056b3;
+        }
+
+        /* --- Responsive Design Adjustments --- */
+        @media (max-width: 992px) {
+            .container {
+                padding: 30px 40px;
+                margin: 30px auto;
+            }
+            .page-header h1 {
+                 font-size: 2.5em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px 25px;
+                margin: 20px auto;
+            }
+             .page-header h1 {
+                 font-size: 2.2em;
+            }
+             .page-header .intro-text {
+                font-size: 1.1em;
+            }
+
+            .timeline-container::before {
+                left: 30px; /* Adjust line position */
+            }
+            .timeline-item {
+                padding-left: 75px; /* Adjust padding */
+                 margin-bottom: 40px;
+            }
+            .timeline-icon {
+                left: 5px; /* Adjust icon position */
+                width: 45px;
+                height: 45px;
+                font-size: 1.1em;
+            }
+             .timeline-content {
+                padding: 20px 25px;
+            }
+             .timeline-content h3 {
+                 font-size: 1.25em;
+             }
+        }
+
+         @media (max-width: 576px) {
+              body {
+                 line-height: 1.6;
+             }
+              .container {
+                padding: 20px 15px;
+                margin: 15px auto;
+                 border-top-width: 4px;
+            }
+             .page-header h1 {
+                 font-size: 1.9em;
+            }
+             .page-header .intro-text {
+                font-size: 1em;
+            }
+             .page-header {
+                 margin-bottom: 30px;
+                 padding-bottom: 15px;
+             }
+
+             .timeline-container::before {
+                left: 24px; /* Further adjust line */
+                width: 3px;
+            }
+             .timeline-item {
+                padding-left: 60px; /* Further adjust padding */
+                margin-bottom: 30px;
+            }
+             .timeline-icon {
+                left: 0px; /* Align directly left */
+                width: 40px;
+                height: 40px;
+                font-size: 1em;
+                 border-width: 3px;
+            }
+             .timeline-content {
+                padding: 15px 20px;
+                border-left-width: 3px;
+            }
+             .timeline-content h3 {
+                 font-size: 1.15em;
+             }
+              .timeline-content p, .timeline-content li {
+                 font-size: 0.95em;
+                 margin-bottom: 8px;
+             }
+             .timeline-duration {
+                 font-size: 0.85em;
+             }
+              .info-section {
+                 padding: 20px;
+                 margin-top: 40px;
+             }
+             .info-section h2 {
+                 font-size: 1.4em;
+             }
+             .contact-info {
+                 margin-top: 40px;
+                 padding-top: 20px;
+                 font-size: 0.9em;
+             }
+         }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="page-header">
+            <h1>Peer Review Journey</h1>
+            <p class="intro-text">
+                Transparency and rigor are cornerstones of Naman's Hub. Follow the journey your manuscript takes through our <strong>[Specify: e.g., Double-Blind / Single-Blind / Open]</strong> peer review process, designed to ensure scholarly excellence.
+            </p>
+        </header>
+
+        <div class="timeline-container">
+
+            <!-- Step 1: Submission -->
+            <div class="timeline-item" id="step-1">
+                <div class="timeline-icon">1</div>
+                <div class="timeline-content">
+                    <h3>Manuscript Submission</h3>
+                    <p>Your journey begins! Submit your manuscript and accompanying files through our dedicated online portal [<em>Link/details</em>]. You'll receive an immediate confirmation with your unique manuscript ID.</p>
+                     <span class="timeline-duration">Confirmation: Instant</span>
+                </div>
+            </div>
+
+            <!-- Step 2: Initial Checks -->
+            <div class="timeline-item" id="step-2">
+                 <div class="timeline-icon">2</div>
+                <div class="timeline-content">
+                    <h3>Initial Editorial Assessment (Triage)</h3>
+                    <p>Our editorial team conducts essential preliminary checks:</p>
+                    <ul>
+                        <li>Alignment with Naman's Hub scope.</li>
+                        <li>Adherence to core formatting and ethical guidelines.</li>
+                        <li>Originality screening using plagiarism detection tools.</li>
+                    </ul>
+                    <p>Manuscripts not meeting these standards may be returned promptly (desk reject).</p>
+                    <span class="timeline-duration">Typical Timeframe: 3-7 Days</span>
+                </div>
+            </div>
+
+            <!-- Step 3: Editor Assignment -->
+            <div class="timeline-item" id="step-3">
+                 <div class="timeline-icon">3</div>
+                <div class="timeline-content">
+                    <h3>Expert Editor Assignment</h3>
+                    <p>Suitable manuscripts are assigned to an Associate Editor with expertise matching your research area. They will oversee the entire peer review process for your submission.</p>
+                     <span class="timeline-duration">Typical Timeframe: 2-5 Days (after triage)</span>
+                </div>
+            </div>
+
+            <!-- Step 4: Reviewer Invitation -->
+            <div class="timeline-item" id="step-4">
+                <div class="timeline-icon">4</div>
+                <div class="timeline-content">
+                    <h3>Reviewer Invitation & Selection</h3>
+                    <p>The assigned Editor identifies and invites qualified, independent experts (usually 2-3) to review your manuscript. Reviewer selection considers:</p>
+                    <ul>
+                        <li>Subject matter expertise and publication history.</li>
+                        <li>Availability and potential conflicts of interest.</li>
+                        <li>Geographical and institutional diversity.</li>
+                    </ul>
+                     <span class="timeline-duration">Typical Timeframe: 1-3 Weeks (can vary)</span>
+                </div>
+            </div>
+
+            <!-- Step 5: Peer Review -->
+            <div class="timeline-item" id="step-5">
+                 <div class="timeline-icon">5</div>
+                <div class="timeline-content">
+                    <h3>In-Depth Peer Review</h3>
+                    <p>Reviewers rigorously evaluate the manuscript's originality, methodology, significance, clarity, and ethical soundness. They provide constructive feedback and recommendations to the Editor.</p>
+                    <p><em>Our process is <strong>[Specify: e.g., Double-Blind]</strong>, meaning reviewer and author identities are concealed from each other.</em></p>
+                    <span class="timeline-duration">Typical Timeframe: 3-6 Weeks (from reviewer acceptance)</span>
+                </div>
+            </div>
+
+            <!-- Step 6: Editorial Decision -->
+            <div class="timeline-item" id="step-6">
+                 <div class="timeline-icon">6</div>
+                <div class="timeline-content">
+                    <h3>First Editorial Decision</h3>
+                    <p>The Editor synthesizes reviewer feedback and their own assessment to make an initial decision:</p>
+                    <ul>
+                        <li>Acceptance (rare without revisions)</li>
+                        <li>Minor Revisions Required</li>
+                        <li>Major Revisions Required</li>
+                        <li>Rejection</li>
+                    </ul>
+                    <p>You'll receive the decision along with anonymized reviewer comments.</p>
+                    <span class="timeline-duration">Target First Decision: 6-10 Weeks (from submission)</span>
+                </div>
+            </div>
+
+             <!-- Step 7: Author Revision -->
+            <div class="timeline-item" id="step-7">
+                 <div class="timeline-icon">7</div>
+                <div class="timeline-content">
+                    <h3>Author Revision Phase</h3>
+                    <p>If revisions are requested, carefully address all editor and reviewer comments. Submit your revised manuscript along with a detailed point-by-point response letter within the provided timeframe.</p>
+                     <span class="timeline-duration">Revision Time: Typically 2-6 Weeks (depending on extent)</span>
+                </div>
+            </div>
+
+             <!-- Step 8: Final Assessment -->
+            <div class="timeline-item" id="step-8">
+                 <div class="timeline-icon">8</div>
+                <div class="timeline-content">
+                    <h3>Final Assessment & Acceptance</h3>
+                    <p>The Editor evaluates the revised manuscript and responses. Additional review rounds may occur if needed. Once satisfied, the Editor issues the final acceptance notification.</p>
+                    <p>Congratulations! Your accepted manuscript moves to production (copyediting, typesetting, proofing).</p>
+                    <span class="timeline-duration">Final Decision: Varies based on revision rounds</span>
+                </div>
+            </div>
+
+        </div> <!-- End Timeline Container -->
+
+        <!-- Info Section -->
+        <section class="info-section" id="reviewer-info">
+            <h2>Our Commitment to Reviewers</h2>
+            <p>Peer review is a vital collaborative effort. We support our reviewers by:</p>
+            <ul>
+                <li>Providing clear review guidelines and expectations.</li>
+                <li>Recognizing reviewer contributions (e.g., via Publons, certificates - <em>Specify methods</em>).</li>
+                <li>Ensuring confidentiality and handling reviews professionally.</li>
+                <li>Seeking timely and constructive feedback.</li>
+            </ul>
+            <p>We are immensely grateful for the expertise and dedication of our reviewer community.</p>
+        </section>
+
+
+        <footer class="contact-info">
+            <p>Questions about the peer review process? Please reach out to the Naman's Hub Editorial Office.</p>
+            <p><strong>Email:</strong> <a href="mailto:example@example.com">example@example.com</a></p>
+        </footer>
+
+    </div> <!-- End Container -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Intersection Observer for Animations ---
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const infoSections = document.querySelectorAll('.info-section'); // Also animate info sections
+
+            const observerOptions = {
+                root: null, // Use the viewport as the root
+                rootMargin: '0px',
+                threshold: 0.2 // Trigger when 20% of the element is visible
+            };
+
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Animate only once
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+            timelineItems.forEach(item => observer.observe(item));
+            infoSections.forEach(section => observer.observe(section));
+
+            // --- Optional: Add subtle parallax or other effects on scroll if desired ---
+            // Example: Slight background movement (use with caution for performance)
+            // window.addEventListener('scroll', () => {
+            //     const scrolled = window.pageYOffset;
+            //     // Apply effect to an element, e.g., body background
+            //     document.body.style.backgroundPositionY = -(scrolled * 0.1) + 'px';
+            // });
+
+             console.log("Enhanced Peer Review page script loaded.");
+
+        }); // End DOMContentLoaded
+    </script>
+
+</body>
+</html>

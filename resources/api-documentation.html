@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Information - Naman's Hub</title>
+    <!-- Using Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* --- Basic Reset & Body Styling --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+             scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #343a40;
+            background-color: #f8f9fa; /* Light gray background */
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- Container --- */
+        .container {
+            max-width: 1000px; /* Slightly narrower than tools page */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            padding: 60px 0;
+            opacity: 0; /* Hidden for scroll animation */
+            transform: translateY(50px); /* Start lower */
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .section.is-visible {
+             opacity: 1;
+             transform: translateY(0);
+        }
+        .section:nth-child(even) {
+             background-color: #ffffff; /* Alternate section backgrounds */
+        }
+         .section-header {
+             text-align: center;
+             margin-bottom: 50px;
+         }
+         .section-header h2 {
+             font-size: 2.2em;
+             font-weight: 700;
+             color: #6f42c1; /* Purple accent color */
+             margin-bottom: 10px;
+             position: relative;
+             display: inline-block;
+             padding-bottom: 10px;
+         }
+         /* Underline effect */
+         .section-header h2::after {
+             content: '';
+             position: absolute;
+             bottom: 0;
+             left: 50%;
+             transform: translateX(-50%);
+             width: 60px;
+             height: 3px;
+             background-color: #6f42c1; /* Purple */
+             border-radius: 2px;
+         }
+         .section-header p {
+             font-size: 1.1em;
+             color: #6c757d;
+             max-width: 700px;
+             margin: 0 auto;
+         }
+
+
+        /* --- Hero Section --- */
+        .hero-section {
+            background: linear-gradient(135deg, #6f42c1 0%, #563d7c 100%); /* Purple gradient */
+            color: #ffffff;
+            padding: 80px 0;
+            text-align: center;
+            opacity: 1; /* Visible immediately */
+            transform: none;
+            transition: none;
+        }
+        .hero-section h1 {
+            font-size: 3.2em;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -1.5px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        .hero-section .intro-text {
+            font-size: 1.25em;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* --- Content Block Styling --- */
+        .content-block {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 35px 40px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e9ecef;
+            margin-bottom: 30px; /* Space between blocks */
+            border-left: 5px solid #6f42c1; /* Left accent */
+             opacity: 0; /* Animation */
+             transform: translateY(40px); /* Animation */
+             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+             transition-delay: calc(var(--block-index) * 0.15s); /* Stagger */
+        }
+         .content-block.is-visible {
+             opacity: 1;
+             transform: translateY(0);
+         }
+
+        .content-block h3 {
+            color: #563d7c; /* Darker Purple */
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        .content-block h3 i { /* Icon before heading */
+            margin-right: 15px;
+            font-size: 1.1em; /* Slightly smaller than heading */
+            color: #6f42c1; /* Purple icon */
+        }
+
+        .content-block p {
+            color: #495057;
+            margin-bottom: 15px;
+            line-height: 1.8; /* Slightly more spacing for readability */
+        }
+        .content-block ul {
+             list-style: none;
+             padding-left: 5px; /* Align with paragraph */
+             margin-bottom: 15px;
+        }
+         .content-block li {
+             margin-bottom: 12px;
+             position: relative;
+             padding-left: 30px; /* Space for icon */
+             color: #495057;
+         }
+         .content-block li::before {
+             content: "\f101"; /* FontAwesome chevron-right */
+             font-family: "Font Awesome 6 Free";
+             font-weight: 900;
+             position: absolute;
+             left: 0;
+             top: 2px;
+             color: #6f42c1; /* Purple chevron */
+             font-size: 0.9em;
+         }
+
+         .content-block strong {
+             font-weight: 600;
+             color: #563d7c;
+         }
+
+         /* Style links within content blocks, BUT NOT buttons */
+         .content-block a:not(.btn-contact) {
+             color: #6f42c1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #6f42c1;
+            transition: color 0.2s ease, border-bottom-color 0.2s ease;
+         }
+/* Ensure the button itself explicitly has white text */
+        .btn-contact {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 25px;
+            background-color: #6f42c1;
+            color: #ffffff; /* Explicitly set white color */
+            text-decoration: none; /* Remove underline inherited from links */
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            font-size: 1em;
+            border-bottom: none; /* Ensure no dotted border */
+        }
+        .btn-contact i { margin-right: 8px; }
+        .btn-contact:hover {
+            background-color: #563d7c;
+            transform: translateY(-2px);
+            border-bottom: none;
+            color: #ffffff; /* Keep text white on hover */
+        }
+
+         /* Call to action button styling */
+         .btn-contact {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 25px;
+            background-color: #6f42c1;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            font-size: 1em;
+            border-bottom: none; /* Override link style */
+        }
+        .btn-contact i { margin-right: 8px; }
+        .btn-contact:hover {
+            background-color: #563d7c;
+             transform: translateY(-2px);
+             border-bottom: none;
+             color: #ffffff;
+        }
+
+
+        /* --- Footer --- */
+        .site-footer {
+            background-color: #343a40;
+            color: #adb5bd;
+            padding: 40px 0;
+            margin-top: 60px;
+            font-size: 0.95em;
+            text-align: center;
+        }
+         .site-footer p { margin-bottom: 10px; }
+        .site-footer a {
+            color: #6f42c1; /* Purple links in footer */
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .site-footer a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 992px) {
+             .container { max-width: 90%; }
+             .hero-section h1 { font-size: 2.8em; }
+             .section-header h2 { font-size: 2em; }
+             .content-block { padding: 30px; }
+             .content-block h3 { font-size: 1.5em; }
+        }
+         @media (max-width: 768px) {
+             body { line-height: 1.6; }
+             .hero-section { padding: 60px 0; }
+             .hero-section h1 { font-size: 2.4em; }
+             .hero-section .intro-text { font-size: 1.1em; }
+             .section { padding: 50px 0; }
+             .section-header h2 { font-size: 1.8em; }
+             .content-block { padding: 25px; border-left-width: 4px;}
+             .content-block h3 { font-size: 1.4em; }
+             .content-block h3 i { margin-right: 10px; font-size: 1em;}
+             .content-block li { padding-left: 25px; }
+             .site-footer { margin-top: 40px; padding: 30px 0;}
+         }
+          @media (max-width: 576px) {
+             .hero-section h1 { font-size: 2em; }
+             .section-header h2 { font-size: 1.6em; }
+             .content-block { padding: 20px; }
+             .content-block h3 { font-size: 1.3em; }
+             .content-block p, .content-block li { font-size: 0.95em; }
+             .btn-contact { padding: 10px 20px; font-size: 0.95em; }
+          }
+
+    </style>
+</head>
+<body>
+
+    <header class="hero-section">
+        <div class="container">
+            <h1>API Information</h1>
+            <p class="intro-text">
+                Learn about programmatic access options and future development plans for Naman's Hub data and services.
+            </p>
+        </div>
+    </header>
+
+    <main>
+        <section class="section" id="current-status">
+            <div class="container">
+                <!-- Current Status Block -->
+                <article class="content-block" style="--block-index: 0;">
+                    <h3><i class="fa-solid fa-circle-info"></i>Current Status: No Public API</h3>
+                    <p>Thank you for your interest in accessing Naman's Hub programmatically. At this time, we <strong>do not offer a public REST API</strong> for external developers or applications.</p>
+                    <p>Our current focus is on enhancing the core publishing platform, user experience, and manuscript processing workflows. Developing and maintaining a robust, secure, and well-documented public API requires significant resources, which are currently prioritized towards these core areas.</p>
+                </article>
+
+                <!-- Alternatives Block -->
+                 <article class="content-block" style="--block-index: 1;">
+                    <h3><i class="fa-solid fa-compass"></i>Available Alternatives</h3>
+                    <p>While a direct API is unavailable, you might find the following existing features useful depending on your needs:</p>
+                    <ul>
+                        <li><strong>Website Search:</strong> Utilize the search functionality directly on the Naman's Hub website to find specific articles, authors, or keywords.</li>
+                        <li><strong>RSS Feeds (if applicable):</strong> Check if Naman's Hub offers RSS feeds for latest articles or specific journal sections.</li>
+                        <li><strong>Citation Export:</strong> Look for options on article pages to export citations in formats like BibTeX, RIS, or EndNote, which can be imported into reference managers.</li>
+                        <li><strong>Manual Submission:</strong> For submitting manuscripts, please follow the process outlined in our <a href="./author-guidelines.html">Author Guidelines</a>.</li>
+                    </ul>
+                     <p>For specific, large-scale data requests or potential institutional partnerships, please reach out to us directly.</p>
+                     <a href="mailto:example@example.com" class="btn-contact"><i class="fa-regular fa-envelope"></i> Contact Support</a> <!-- Replace email -->
+                </article>
+
+                 <!-- Future Plans Block -->
+                 <article class="content-block" style="--block-index: 2;">
+                    <h3><i class="fa-solid fa-lightbulb"></i>Future Development & Interest</h3>
+                    <p>We recognize the value an API could provide to researchers, developers, and institutions for tasks like automated searching, metadata analysis, and integration with other tools.</p>
+                    <p>While not on our immediate roadmap, the development of a public API is something we may consider in the future based on user demand and strategic priorities. <strong>Your feedback is valuable!</strong> If you have specific use cases or would find an API beneficial, please let us know.</p>
+                     <a href="mailto:example@example.com?subject=API%20Interest%20for%20Naman's%20Hub" class="btn-contact"><i class="fa-regular fa-comments"></i> Express Interest / Suggest Use Cases</a> <!-- Replace email -->
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Thank you for your understanding. For any other questions, please visit our <a href="/faq">FAQ</a> or contact us.</p> <!-- Add FAQ link if exists -->
+            <p><strong>General Inquiries:</strong> <a href="mailto:example@example.com">example@example.com</a> (Replace email)</p>
+            <p>© <span id="current-year"></span> Naman's Hub. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Set Current Year in Footer ---
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // --- Intersection Observer for Animations ---
+            const animatedElements = document.querySelectorAll('.section:not(.hero-section), .content-block');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Trigger when 15% visible
+            };
+
+            const observerCallback = (entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Apply delay based on block index if needed
+                        // entry.target.style.transitionDelay = `${index * 100}ms`;
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Animate only once
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            animatedElements.forEach(el => observer.observe(el));
+
+            console.log("API Information page script loaded.");
+
+        }); // End DOMContentLoaded
+    </script>
+
+</body>
+</html>

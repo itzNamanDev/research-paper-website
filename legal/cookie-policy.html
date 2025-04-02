@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Policy - Naman's Hub</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* --- CSS Reset & Base Styles --- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary-color: #0056b3; /* Professional Blue */
+            --secondary-color: #007bff; /* Brighter Blue Accent */
+            --light-bg: #f8f9fa;
+            --dark-text: #343a40;
+            --light-text: #ffffff;
+            --border-color: #dee2e6;
+            --accent-gradient: linear-gradient(135deg, #007bff, #0056b3);
+            --box-shadow: 0 4px 15px rgba(0, 86, 179, 0.15);
+            --hover-shadow: 0 6px 20px rgba(0, 86, 179, 0.25);
+            --border-radius: 8px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- Header --- */
+        .site-header {
+            background: var(--accent-gradient);
+            color: var(--light-text);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-bottom-left-radius: 50% 20px; /* Curve effect */
+            border-bottom-right-radius: 50% 20px; /* Curve effect */
+            margin-bottom: 2rem;
+        }
+
+        .site-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .site-header p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* --- Main Content Area --- */
+        .main-content {
+            flex-grow: 1;
+            max-width: 900px;
+            width: 95%;
+            margin: 0 auto 3rem auto; /* Added bottom margin */
+            padding: 1.5rem;
+        }
+
+        .intro-section {
+            background-color: var(--light-text);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .intro-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: flex; /* Align icon and text */
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem; /* Space between icon and text */
+        }
+        .intro-section h2 .fa-cookie-bite { /* Specific icon styling */
+            font-size: 1.8rem;
+        }
+
+
+        /* --- Accordion Styles --- */
+        .accordion-container {
+            background-color: var(--light-text);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden; /* Important for border-radius with children */
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-button {
+            background-color: var(--light-text);
+            color: var(--dark-text);
+            cursor: pointer;
+            padding: 1.2rem 1.5rem;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+         .accordion-button .button-text {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem; /* Space between icon and text */
+        }
+
+         .accordion-button .icon-left { /* Style for icons on the left */
+            color: var(--secondary-color);
+            font-size: 1.1em; /* Slightly larger */
+             width: 20px; /* Ensure alignment */
+             text-align: center;
+        }
+
+
+        .accordion-button:hover,
+        .accordion-button.active {
+            background-color: #eef7ff; /* Lighter blue tint */
+            color: var(--primary-color);
+        }
+
+        .accordion-button .icon-toggle { /* Renamed from .icon for clarity */
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            color: var(--secondary-color);
+        }
+
+        .accordion-button.active .icon-toggle {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            background-color: #fdfdff; /* Slightly different background */
+            padding: 0 1.5rem;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+         .accordion-content p,
+         .accordion-content ul,
+         .accordion-content table {
+             margin-bottom: 1rem;
+         }
+         .accordion-content ul {
+             padding-left: 20px;
+             list-style: disc; /* Use disc, or consider custom icons */
+         }
+         .accordion-content strong {
+            color: var(--primary-color);
+            font-weight: 600;
+         }
+         .accordion-content a {
+             color: var(--secondary-color);
+             text-decoration: none;
+             font-weight: 600;
+             transition: color 0.2s ease;
+         }
+         .accordion-content a:hover {
+             color: var(--primary-color);
+             text-decoration: underline;
+         }
+         .accordion-content table {
+             width: 100%;
+             border-collapse: collapse;
+             font-size: 0.9rem;
+         }
+         .accordion-content th,
+         .accordion-content td {
+             border: 1px solid var(--border-color);
+             padding: 0.5rem 0.75rem;
+             text-align: left;
+         }
+          .accordion-content th {
+              background-color: #eef7ff;
+              font-weight: 600;
+          }
+
+
+        /* --- Contact Section --- */
+        .contact-section {
+            margin-top: 2.5rem;
+            padding: 2rem;
+            background: var(--accent-gradient);
+            color: var(--light-text);
+            text-align: center;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .contact-section h3 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .contact-section a {
+            color: var(--light-text);
+            text-decoration: underline;
+            font-weight: 600;
+            transition: opacity 0.2s ease;
+        }
+        .contact-section a:hover {
+            opacity: 0.8;
+        }
+
+
+        /* --- Footer --- */
+        .site-footer {
+            background-color: var(--dark-text);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            margin-top: auto; /* Pushes footer to bottom */
+        }
+         .site-footer a {
+            color: rgba(255, 255, 255, 0.8);
+             text-decoration: none;
+             margin: 0 0.5rem;
+         }
+         .site-footer a:hover {
+             text-decoration: underline;
+         }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .site-header h1 {
+                font-size: 2rem;
+            }
+            .site-header p {
+                font-size: 1rem;
+            }
+            .main-content {
+                width: 95%;
+                padding: 1rem;
+            }
+            .intro-section h2 {
+                 font-size: 1.5rem; /* Adjust title size */
+                 gap: 0.5rem;
+            }
+            .intro-section h2 .fa-cookie-bite {
+                 font-size: 1.5rem;
+             }
+
+            .accordion-button {
+                padding: 1rem 1.2rem;
+                font-size: 1rem;
+            }
+             .accordion-button .button-text {
+                 gap: 0.5rem; /* Adjust gap */
+             }
+
+            .accordion-content {
+                 padding: 0 1.2rem;
+                 font-size: 0.9rem;
+            }
+             .intro-section, .contact-section {
+                padding: 1.5rem;
+            }
+        }
+
+         @media (max-width: 480px) {
+             .site-header {
+                 padding: 1.5rem 0.5rem;
+                 border-bottom-left-radius: 40% 15px;
+                 border-bottom-right-radius: 40% 15px;
+             }
+             .site-header h1 {
+                 font-size: 1.8rem;
+             }
+             .site-header p {
+                 font-size: 0.9rem;
+             }
+             .intro-section h2 {
+                 font-size: 1.3rem; /* Further adjust title size */
+                 flex-direction: column; /* Stack icon and text */
+                 gap: 0.3rem;
+             }
+              .intro-section h2 .fa-cookie-bite {
+                 margin-bottom: 0.25rem;
+             }
+             .accordion-content table,
+             .accordion-content th,
+             .accordion-content td {
+                 font-size: 0.85rem; /* Smaller table text on mobile */
+                 padding: 0.4rem 0.5rem;
+             }
+         }
+
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <h1>Naman's Hub</h1>
+        <p>Advancing Knowledge Together</p>
+    </header>
+
+    <main class="main-content">
+
+        <section class="intro-section">
+             <h2>
+                <i class="fas fa-cookie-bite"></i>
+                <span>Cookie Policy</span>
+            </h2>
+            <p>This Cookie Policy explains how Naman's Hub ("we", "us", or "our") uses cookies and similar technologies when you visit our website. It explains what these technologies are and why we use them, as well as your rights to control our use of them.</p>
+        </section>
+
+        <div class="accordion-container">
+
+            <!-- Accordion Item 1: What are Cookies? -->
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false">
+                    <span class="button-text">
+                        <i class="fas fa-info-circle icon-left"></i>
+                        What are Cookies?
+                    </span>
+                    <i class="fas fa-plus icon-toggle"></i>
+                </button>
+                <div class="accordion-content">
+                    <p>Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners to make their websites work, or to work more efficiently, as well as to provide reporting information.</p>
+                    <p>Cookies set by the website owner (in this case, Naman's Hub) are called "first-party cookies". Cookies set by parties other than the website owner are called "third-party cookies". Third-party cookies enable third-party features or functionality to be provided on or through the website (e.g., advertising, interactive content, and analytics).</p>
+                    <p>Cookies can be "session" cookies (which expire once you close your web browser) or "persistent" cookies (which stay on your device for a set period or until you delete them).</p><br>
+                </div>
+            </div>
+
+            <!-- Accordion Item 2: How We Use Cookies -->
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false">
+                     <span class="button-text">
+                        <i class="fas fa-cogs icon-left"></i>
+                         How We Use Cookies
+                     </span>
+                    <i class="fas fa-plus icon-toggle"></i>
+                </button>
+                <div class="accordion-content">
+                    <p>We use first-party and third-party cookies for several reasons. Some cookies are required for technical reasons for our website to operate, and we refer to these as "essential" or "strictly necessary" cookies.</p>
+                    <p>Other cookies enable us to track and target the interests of our users to enhance the experience on our platform. These include:</p>
+                     <ul>
+                        <li><strong>Functionality Cookies:</strong> Used to recognize you when you return to our website and remember your preferences (e.g., your choice of language or region, login information).</li>
+                        <li><strong>Performance/Analytics Cookies:</strong> Allow us to recognize and count the number of visitors and see how visitors move around our website. This helps us improve the way our website works (e.g., by ensuring users find what they are looking for easily). We may use services like Google Analytics for this purpose.</li>
+                        <!-- Optional: Add if relevant -->
+                        <!-- <li><strong>Targeting/Advertising Cookies:</strong> Record your visit, pages visited, and links followed. This information might be used by us or third parties to make advertising displayed potentially more relevant to your interests. (Note: Less common for purely academic sites, but include if applicable).</li> -->
+                    </ul>
+                     <p>The specific types of first and third-party cookies served through our website and the purposes they perform are described in the table below (or the next section).</p><br>
+                </div>
+            </div>
+
+             <!-- Accordion Item 3: Types of Cookies Used -->
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false">
+                     <span class="button-text">
+                        <i class="fas fa-list-ul icon-left"></i>
+                         Types of Cookies We Use
+                     </span>
+                    <i class="fas fa-plus icon-toggle"></i>
+                </button>
+                <div class="accordion-content">
+                   <p>Below is a list of the main types of cookies we may use on Naman's Hub:</p>
+                   <table>
+                       <thead>
+                           <tr>
+                               <th>Category</th>
+                               <th>Purpose</th>
+                               <th>Type (Session/Persistent)</th>
+                               <th>Party (First/Third)</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr>
+                               <td><strong>Essential</strong></td>
+                               <td>Required for site navigation, login functionality, security, and core operations. Cannot be disabled.</td>
+                               <td>Session & Persistent</td>
+                               <td>First-party</td>
+                           </tr>
+                            <tr>
+                               <td><strong>Functionality</strong></td>
+                               <td>Remember user preferences (e.g., language, login status) to provide a more personalized experience.</td>
+                               <td>Persistent</td>
+                               <td>First-party</td>
+                           </tr>
+                            <tr>
+                               <td><strong>Performance / Analytics</strong></td>
+                               <td>Collect anonymous data about site usage (pages visited, time spent) to help us understand user behavior and improve the site.</td>
+                               <td>Persistent</td>
+                               <td>First-party & Third-party (e.g., Google Analytics)</td>
+                           </tr>
+                           <!-- Add other categories if needed, e.g., Advertising -->
+                           <!--
+                           <tr>
+                               <td><strong>Advertising</strong></td>
+                               <td>Used to deliver advertisements more relevant to you and your interests. (State if not used: Naman's Hub currently does not use advertising cookies).</td>
+                               <td>Persistent</td>
+                               <td>Third-party</td>
+                           </tr>
+                           -->
+                       </tbody>
+                   </table>
+                   <p><em>Note: This list is illustrative and may not be exhaustive. Specific cookies used can change.</em></p><br>
+                </div>
+            </div>
+
+
+            <!-- Accordion Item 4: Third-Party Cookies -->
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false">
+                     <span class="button-text">
+                        <i class="fas fa-share-alt icon-left"></i>
+                         Third-Party Cookies
+                     </span>
+                    <i class="fas fa-plus icon-toggle"></i>
+                </button>
+                <div class="accordion-content">
+                    <p>As mentioned, some features or analytics on our site may rely on third-party services, which might set their own cookies. We do not control the use of these third-party cookies.</p>
+                    <p>Examples include:</p>
+                    <ul>
+                       <li><strong>Google Analytics:</strong> To analyze website traffic. You can learn about Google's practices <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">here</a> and opt-out via their browser add-on <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">here</a>.</li>
+                       <li><strong>Embedded Content:</strong> Content from services like YouTube, Vimeo, or social media platforms embedded in articles may set cookies.</li>
+                       <!-- Add other relevant third parties -->
+                    </ul>
+                    <p>We recommend reviewing the privacy and cookie policies of these third-party providers for more information.</p><br>
+                </div>
+            </div>
+
+            <!-- Accordion Item 5: Your Choices & Managing Cookies -->
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false">
+                     <span class="button-text">
+                        <i class="fas fa-user-cog icon-left"></i>
+                        Your Choices & Managing Cookies
+                     </span>
+                    <i class="fas fa-plus icon-toggle"></i>
+                </button>
+                <div class="accordion-content">
+                     <p>You have the right to decide whether to accept or reject cookies (except for strictly necessary cookies).</p>
+                     <p><strong>Cookie Consent Tool:</strong> When you first visit our site, you may be presented with a cookie banner allowing you to customize your preferences.</p>
+                     <p><strong>Browser Settings:</strong> Most web browsers allow you to control cookies through their settings preferences. You can usually find these settings in the 'Options' or 'Preferences' menu of your browser. To understand these settings, the following links may be helpful, or you can use the 'Help' option in your browser for more details:</p>
+                    <ul>
+                        <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer">Cookie settings in Chrome</a></li>
+                        <li><a href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences" target="_blank" rel="noopener noreferrer">Cookie settings in Firefox</a></li>
+                        <li><a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer">Cookie settings in Edge</a></li>
+                        <li><a href="https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac" target="_blank" rel="noopener noreferrer">Cookie settings in Safari</a></li>
+                    </ul>
+                     <p><strong>Opt-Out Links:</strong> For some third-party cookies (like analytics), you may be able to opt-out directly via links provided (see 'Third-Party Cookies' section).</p>
+                    <p>Please note that blocking all cookies may negatively impact your user experience, and some parts of the website may not function properly.</p><br>
+                </div>
+            </div>
+
+             <!-- Accordion Item 6: Changes to This Policy -->
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false">
+                     <span class="button-text">
+                        <i class="fas fa-sync-alt icon-left"></i>
+                         Changes to This Cookie Policy
+                     </span>
+                    <i class="fas fa-plus icon-toggle"></i>
+                </button>
+                <div class="accordion-content">
+                    <p>We may update this Cookie Policy from time to time to reflect, for example, changes to the cookies we use or for other operational, legal, or regulatory reasons.</p>
+                    <p>Please revisit this Cookie Policy regularly to stay informed about our use of cookies and related technologies. The date at the bottom of this Cookie Policy indicates when it was last updated.</p><br>
+                </div>
+            </div>
+
+            <!-- Accordion Item 7: Contact Us -->
+            <div class="accordion-item">
+                 <button class="accordion-button" aria-expanded="false">
+                     <span class="button-text">
+                        <i class="fas fa-envelope icon-left"></i>
+                         Contact Us
+                     </span>
+                    <i class="fas fa-plus icon-toggle"></i>
+                </button>
+                 <div class="accordion-content">
+                    <p>If you have any questions about our use of cookies or other technologies, please email us at:</p>
+                    <p><strong><a href="mailto:example@example.com">example@example.com</a></strong></p><br>
+                    <!-- Optional: Add link to a general contact page -->
+                    <!-- <p>Or visit our <a href="/contact">Contact Page</a>.</p> -->
+                </div>
+            </div>
+
+
+        </div> <!-- End Accordion Container -->
+
+        <section class="contact-section">
+            <h3>Questions About Cookies?</h3>
+            <p>For any inquiries regarding this policy or our use of cookies, please reach out to <a href="mailto:example@example.com">example@example.com</a>.</p>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        © <span id="currentYear"></span> Naman's Hub. All Rights Reserved. |
+        <a href="cookie-policy.html">Cookie Policy</a> | <!-- Link to this page -->
+        <a href="privacy-policy.html">Privacy Policy</a> <!-- Example Link -->
+        <!-- Add other relevant footer links -->
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const accordionButtons = document.querySelectorAll('.accordion-button');
+            const currentYearSpan = document.getElementById('currentYear');
+
+            // Set current year in footer
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+
+            accordionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const icon = button.querySelector('.icon-toggle'); // Use the specific class for the toggle icon
+                    const currentlyActive = button.classList.contains('active');
+
+                    // --- Optional: Close all other accordions ---
+                    accordionButtons.forEach(otherButton => {
+                        if (otherButton !== button && otherButton.classList.contains('active')) {
+                            otherButton.classList.remove('active');
+                            otherButton.setAttribute('aria-expanded', 'false');
+                            otherButton.nextElementSibling.style.maxHeight = null;
+                            otherButton.nextElementSibling.style.paddingTop = null; // Reset padding
+                            otherButton.nextElementSibling.style.paddingBottom = null; // Reset padding
+                            const otherIcon = otherButton.querySelector('.icon-toggle');
+                            if (otherIcon) {
+                                otherIcon.classList.remove('fa-minus');
+                                otherIcon.classList.add('fa-plus');
+                            }
+                        }
+                    });
+                    // --- End Optional Section ---
+
+                    // Toggle the clicked accordion
+                    if (!currentlyActive) {
+                        button.classList.add('active');
+                        button.setAttribute('aria-expanded', 'true');
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        content.style.paddingTop = '1.5rem'; // Add padding when open
+                        content.style.paddingBottom = '1.5rem'; // Add padding when open
+                        if (icon) {
+                            icon.classList.remove('fa-plus');
+                            icon.classList.add('fa-minus');
+                        }
+                    } else {
+                        button.classList.remove('active');
+                        button.setAttribute('aria-expanded', 'false');
+                        content.style.maxHeight = null;
+                        content.style.paddingTop = null; // Remove padding when closed
+                        content.style.paddingBottom = null; // Remove padding when closed
+                        if (icon) {
+                            icon.classList.remove('fa-minus');
+                            icon.classList.add('fa-plus');
+                        }
+                    }
+                });
+            });
+
+            // Add last updated date dynamically (Optional - better to set manually for policy pages)
+            // const lastUpdated = document.getElementById('lastUpdatedDate');
+            // if(lastUpdated) {
+            //    // You'd typically set this date manually when you update the policy.
+            //    // Example: lastUpdated.textContent = "October 26, 2023";
+            // }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Research Paper</title>
+    <style>
+        /* Basic Reset & Body Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+
+        /* Container for centering content */
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Headings */
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2.2em;
+        }
+
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+            font-size: 1.6em;
+        }
+
+        /* Paragraphs and Links */
+        p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Email Address Highlight */
+        .email-address {
+            font-weight: bold;
+            color: #e74c3c;
+            background-color: #fdf2f2; /* Light red background */
+            padding: 3px 6px;
+            border-radius: 4px;
+            display: inline-block; /* Makes background padding work nicely */
+        }
+
+        /* Instructions List */
+        ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* Email Structure Block */
+        pre {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #bdc3c7;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            white-space: pre-wrap; /* Allows wrapping long lines */
+            word-wrap: break-word; /* Breaks long words if needed */
+            color: #2c3e50;
+            margin-top: 10px;
+        }
+
+        /* Email Button */
+        .email-button {
+            display: inline-block;
+            background-color: #3498db;
+            color: #ffffff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            margin-top: 15px;
+            text-decoration: none; /* For the <a> tag acting as a button */
+        }
+
+        .email-button:hover {
+            background-color: #2980b9;
+            text-decoration: none; /* Keep underline off on hover */
+            color: #ffffff;
+        }
+
+        .email-button:active {
+             transform: scale(0.98); /* Slight press effect */
+        }
+
+        /* Responsive adjustments (optional, but good practice) */
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            h2 {
+                font-size: 1.4em;
+            }
+            .email-button {
+                width: 100%; /* Make button full width on small screens */
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Submit Your Research Paper</h1>
+
+        <p>Thank you for your interest in submitting your research paper. We welcome contributions from researchers and academics worldwide.</p>
+
+        <p>To submit your paper, please email it directly to our editorial team at the following address:</p>
+
+        <p style="text-align: center; font-size: 1.2em; margin: 25px 0;">
+            <a href="mailto:example@mail.com" class="email-address">example@mail.com</a>
+        </p>
+
+        <p>Please ensure your submission adheres to the guidelines below.</p>
+
+        <h2>Instructions for Email Submission</h2>
+        <ul>
+            <li>Attach your research paper as a PDF or DOCX file.</li>
+            <li>Use a clear and concise subject line (see suggestion below).</li>
+            <li>Include a brief cover letter in the body of your email.</li>
+            <li>Provide contact information for the corresponding author.</li>
+            <li>Ensure your paper meets our formatting and citation guidelines (link to guidelines if available).</li>
+            <li>Confirm that the work is original and has not been published or submitted elsewhere concurrently.</li>
+        </ul>
+
+        <h2>Suggested Email Structure</h2>
+        <p>To help us process your submission efficiently, please consider using the following structure for your email:</p>
+
+        <pre><code>**Subject:** Research Paper Submission: [Your Paper Title]
+
+**Body:**
+
+Dear Editorial Team,
+
+Please find attached our manuscript titled "[Your Paper Title]" for consideration for publication in [Journal/Conference Name - Optional, if applicable].
+
+[Optional: Briefly state the main contribution or significance of your paper - 1-2 sentences].
+
+The corresponding author for this submission is:
+Name: [Your Full Name]
+Affiliation: [Your Institution/Affiliation]
+Email: [Your Email Address]
+Phone: [Your Phone Number - Optional]
+
+We confirm that this manuscript is original work and has not been published elsewhere, nor is it currently under consideration by another journal or conference.
+
+[Optional: Suggest potential reviewers or mention any conflicts of interest].
+
+Thank you for considering our work. We look forward to hearing from you.
+
+Sincerely,
+
+[Your Full Name(s)]
+[Your Affiliation(s)]
+</code></pre>
+
+        <p>Click the button below to open your default email client with the address and a suggested subject line pre-filled:</p>
+
+        <!-- The button is an <a> tag styled as a button for direct mailto functionality -->
+        <a href="#" id="emailLinkButton" class="email-button">
+            Compose Submission Email
+        </a>
+
+        <p style="margin-top: 30px; text-align: center; font-style: italic; color: #777;">
+            We aim to acknowledge receipt of submissions within [e.g., 3-5] business days.
+        </p>
+    </div>
+
+    <script>
+        // Get the button element
+        const emailButton = document.getElementById('emailLinkButton');
+
+        // Define email details
+        const recipientEmail = "example@mail.com";
+        const suggestedSubject = "Research Paper Submission: [Your Paper Title Here]";
+
+        // Add click event listener to the button
+        emailButton.addEventListener('click', function(event) {
+            // Prevent the default anchor tag behavior (# link)
+            event.preventDefault();
+
+            // Construct the mailto link
+            // We need to encode the subject line to handle special characters properly in URLs
+            const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(suggestedSubject)}`;
+
+            // Open the user's default email client
+            window.location.href = mailtoLink;
+        });
+
+        // Optional: Log to console to confirm script loaded (for debugging)
+        console.log("Submit Paper page script loaded.");
+
+    </script>
+
+</body>
+</html>

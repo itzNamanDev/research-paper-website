@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Naman's Hub</title>
+    <style>
+        /* --- Global Styles & Variables --- */
+        :root {
+            --primary-color: #2c3e50; /* Dark Blue */
+            --secondary-color: #3498db; /* Bright Blue */
+            --accent-color: #e74c3c; /* Red Accent */
+            --background-color: #ecf0f1; /* Light Grey */
+            --text-color: #34495e; /* Dark Grey */
+            --card-background: #ffffff; /* White */
+            --border-color: #bdc3c7; /* Light Silver */
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --header-font: 'Georgia', serif;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+            --sticky-toc-offset: 130px; /* Adjusted value for scroll margin */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Enables smooth scrolling for anchor links */
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- Layout & Container --- */
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: var(--card-background);
+            padding: 30px 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            flex-grow: 1; /* Make container grow to fill space */
+        }
+
+        /* --- Header --- */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .header h1 {
+            font-family: var(--header-font);
+            color: var(--primary-color);
+            font-size: 2.8em;
+            margin-bottom: 5px;
+        }
+
+        .header h2 {
+            color: var(--secondary-color);
+            font-size: 1.8em;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .last-updated {
+            font-size: 0.9em;
+            color: #7f8c8d; /* Medium Grey */
+        }
+
+        /* --- Table of Contents (TOC) --- */
+        #toc-container {
+            background-color: #f8f9f9;
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--secondary-color);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: var(--border-radius);
+            transition: all var(--transition-speed) ease;
+            /* Sticky properties applied conditionally via media query */
+        }
+
+        #toc-container h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.3em;
+        }
+
+        #toc-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        #toc-list li a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            display: block;
+            padding: 5px 0;
+            transition: color var(--transition-speed), padding-left var(--transition-speed), background-color var(--transition-speed);
+            border-bottom: 1px dashed var(--border-color);
+        }
+        #toc-list li:last-child a {
+             border-bottom: none;
+        }
+
+        #toc-list li a:hover,
+        #toc-list li a:focus {
+            color: var(--accent-color);
+            padding-left: 10px;
+            background-color: #eaf2f8; /* Light blue on hover */
+        }
+        #toc-list li a.active { /* Style for the active TOC link */
+             color: var(--accent-color);
+             font-weight: bold;
+             padding-left: 10px;
+             background-color: #eaf2f8;
+             border-left: 3px solid var(--accent-color);
+        }
+
+
+        /* --- Main Content Sections --- */
+        .content-section {
+            margin-bottom: 35px;
+            padding-top: 20px; /* Standard padding for visual spacing within section */
+            /* scroll-margin-top applied conditionally below */
+        }
+
+        .content-section h3 {
+            font-family: var(--header-font);
+            color: var(--primary-color);
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+         .content-section h4 {
+            color: var(--secondary-color);
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .content-section p,
+        .content-section ul,
+        .content-section ol {
+            margin-bottom: 15px;
+        }
+
+        .content-section ul,
+        .content-section ol {
+            margin-left: 25px;
+        }
+
+        .content-section li {
+            margin-bottom: 8px;
+        }
+
+        /* --- Emphasis & Links --- */
+        strong {
+            color: var(--primary-color);
+        }
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        a:hover, a:focus {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        /* --- Important Notice Box --- */
+        .notice {
+            background-color: #fdf3e6; /* Light Orange */
+            border: 1px solid #f5cba7; /* Orange Border */
+            border-left: 5px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: var(--border-radius);
+        }
+        .notice strong {
+            color: var(--accent-color);
+        }
+
+        /* --- Action Buttons & Acceptance --- */
+        .actions-container {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            display: flex;
+            flex-direction: column; /* Default to column */
+            align-items: center;
+            gap: 15px; /* Space between elements */
+        }
+
+        .acceptance-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px; /* Add space below checkbox */
+            width: 100%; /* Make it take full width in column layout */
+            text-align: center;
+        }
+
+        .acceptance-section input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--secondary-color); /* Style the check itself */
+        }
+
+        .acceptance-section label {
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* Space between buttons */
+            width: 100%; /* Take full width */
+            flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+        }
+
+        .action-button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1em;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+            /* Removed margin as gap property is used in flex container */
+        }
+
+        .action-button:hover:not(:disabled) {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .action-button:disabled {
+            background-color: #bdc3c7; /* Disabled Grey */
+            cursor: not-allowed;
+            opacity: 0.7;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .print-button {
+             background-color: var(--accent-color);
+        }
+         .print-button:hover {
+             background-color: #c0392b; /* Darker Red */
+        }
+
+        /* --- Footer --- */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+
+        .footer a {
+            color: var(--primary-color);
+        }
+        .footer a:hover {
+            color: var(--accent-color);
+        }
+
+
+        /* --- Responsive Design --- */
+
+        /* Styles for when TOC is sticky (Larger Screens) */
+        @media (min-width: 769px) {
+             .content-section {
+                /* Add margin above section to account for sticky TOC height */
+                scroll-margin-top: var(--sticky-toc-offset);
+             }
+             #toc-container {
+                 position: sticky;
+                 top: 20px; /* Stick 20px from the top */
+                 max-height: calc(100vh - 40px); /* Limit height based on viewport minus top/bottom space */
+                 overflow-y: auto; /* Add scroll if TOC content is too long */
+                 z-index: 10; /* Ensure TOC stays on top */
+             }
+        }
+
+        /* Styles for Small/Medium Screens (TOC is not sticky) */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 20px;
+                margin: 10px auto;
+            }
+            .header h1 {
+                font-size: 2.2em;
+            }
+             .header h2 {
+                font-size: 1.5em;
+            }
+            #toc-container {
+                position: static; /* Unstick TOC */
+                max-height: none; /* Remove height limit */
+                margin-bottom: 25px;
+                z-index: auto; /* Reset z-index */
+                overflow-y: visible; /* Reset overflow */
+            }
+             .content-section {
+                 scroll-margin-top: 0; /* No scroll margin needed when TOC isn't sticky */
+             }
+             .content-section h3 {
+                font-size: 1.4em;
+            }
+             .content-section h4 {
+                font-size: 1.1em;
+            }
+            .actions-container {
+                 /* Column layout is default, but confirm if needed */
+                 flex-direction: column;
+                 align-items: center;
+            }
+            .acceptance-section {
+                 width: 100%;
+                 justify-content: center;
+                 margin-bottom: 15px;
+            }
+             .button-group {
+                 width: 100%;
+                 justify-content: center;
+             }
+             .action-button {
+                width: 80%; /* Or adjust as needed for column layout */
+                margin-bottom: 10px;
+             }
+             .action-button:last-child {
+                 margin-bottom: 0;
+             }
+        }
+
+        /* Further adjustments for very small screens */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+             .header h2 {
+                font-size: 1.3em;
+            }
+            .container {
+                padding: 15px;
+            }
+            body {
+                font-size: 15px;
+            }
+            .acceptance-section label {
+                font-size: 0.9em;
+            }
+             .action-button {
+                width: 90%;
+                padding: 10px 20px;
+             }
+            .button-group {
+                 gap: 10px;
+            }
+        }
+
+        /* Adjustments for actions container layout */
+         @media (min-width: 576px) and (max-width: 768px){
+            /* Keep column layout but maybe adjust button width if needed */
+             .action-button {
+                width: 60%;
+             }
+         }
+         @media (min-width: 769px) { /* Apply row layout only when TOC is sticky */
+             .actions-container {
+                 flex-direction: row; /* Buttons side-by-side */
+                 justify-content: space-between; /* Space out checkbox and buttons */
+                 align-items: center;
+             }
+             .acceptance-section {
+                 width: auto; /* Allow checkbox section to shrink */
+                 margin-bottom: 0; /* Remove bottom margin */
+                 justify-content: flex-start; /* Align checkbox left */
+             }
+             .button-group {
+                 width: auto; /* Allow button group to shrink */
+                 justify-content: flex-end; /* Align buttons right */
+             }
+              .action-button { /* Reset width for row layout */
+                 width: auto;
+                 margin-bottom: 0;
+              }
+         }
+
+
+        /* Print specific styles */
+        @media print {
+          body {
+            padding: 0;
+            background-color: #fff;
+            color: #000;
+            font-size: 12pt;
+          }
+          .container {
+            box-shadow: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            max-width: 100%;
+          }
+          #toc-container, .actions-container, .footer {
+            display: none; /* Hide TOC, buttons, and footer when printing */
+          }
+          .header {
+             border-bottom: 1px solid #ccc;
+             text-align: left;
+          }
+           .header h1, .header h2 {
+                color: #000;
+           }
+           .content-section {
+             padding-top: 10px;
+             margin-top: 0;
+             margin-bottom: 20px;
+             scroll-margin-top: 0 !important; /* Ensure no scroll margin for print */
+           }
+           .content-section h3 {
+             border-bottom: 1px solid #666;
+             color: #000;
+             font-size: 1.3em;
+             page-break-after: avoid; /* Prevent page breaks right after headings */
+           }
+           a {
+             color: #000;
+             text-decoration: none; /* Remove underlines for print */
+           }
+           .notice {
+              border: 1px solid #aaa;
+              background-color: #eee;
+              border-left: 3px solid #666;
+              color: #000;
+           }
+            .notice strong {
+               color: #000;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <h1>Naman's Hub</h1>
+            <h2>Terms of Service</h2>
+            <p class="last-updated">Last Updated: April 2, 2025</p> <!-- *** IMPORTANT: UPDATE THIS DATE *** -->
+        </header>
+
+        <!-- Table of Contents Container -->
+
+
+        <main>
+            <!-- Content Sections (1-13) -->
+            <section class="content-section" id="introduction">
+                <h3>1. Introduction & Acceptance</h3>
+                <p>Welcome to Naman's Hub! These Terms of Service ("Terms") govern your access to and use of the Naman's Hub website, platform, and services (collectively, the "Service"), operated by Naman's Hub ("we," "us," or "our"). Our Service provides a platform for users to publish, share, discover, and discuss academic and educational content, including research papers.</p>
+                <p><strong>By accessing or using the Service, you agree to be bound by these Terms and our Privacy Policy [Link to Privacy Policy - Create this separately].</strong> If you do not agree to these Terms, you must not access or use the Service. Please read them carefully.</p>
+                <div class="notice">
+                    <strong>Important:</strong> These Terms constitute a legally binding agreement. Naman's Hub reserves the right to modify these Terms at any time. We will notify you of significant changes (e.g., via email or a notice on the Service), but it is your responsibility to review these Terms periodically. Continued use of the Service after changes constitutes acceptance.
+                </div>
+            </section>
+
+            <section class="content-section" id="definitions">
+                <h3>2. Definitions</h3>
+                <ul>
+                    <li><strong>"Service"</strong> refers to the Naman's Hub website, applications, APIs, and any associated services.</li>
+                    <li><strong>"User," "You," "Your"</strong> refers to any individual or entity accessing or using the Service, including authors, readers, reviewers, or general visitors.</li>
+                    <li><strong>"Content"</strong> means any text, data, information, articles, research papers, abstracts, comments, graphics, photos, videos, or other materials uploaded, downloaded, or appearing on the Service.</li>
+                    <li><strong>"User Content"</strong> refers to Content submitted, posted, or displayed by Users on the Service, particularly research papers and associated materials.</li>
+                     <li><strong>"Research Paper"</strong> refers specifically to academic or scholarly articles, pre-prints, theses, dissertations, or similar documents submitted for publication or sharing on the Service.</li>
+                </ul>
+            </section>
+
+            <section class="content-section" id="accounts">
+                <h3>3. User Accounts</h3>
+                 <h4>3.1 Registration</h4>
+                <p>To access certain features, such as submitting Research Papers, you may need to register for an account. You agree to provide accurate, current, and complete information during registration and keep your account information updated.</p>
+                 <h4>3.2 Account Security</h4>
+                <p>You are responsible for safeguarding your account password and for all activities that occur under your account. You must notify us immediately of any unauthorized use of your account. We are not liable for any loss or damage arising from your failure to protect your account information.</p>
+                 <h4>3.3 Eligibility</h4>
+                <p>You must be at least 13 years old (or the minimum age required by your country's laws to consent to online services) to use the Service. If you are under the age of majority in your jurisdiction (typically 18), you may only use the Service with the express consent and supervision of a parent or legal guardian who agrees to be bound by these Terms.</p>
+            </section>
+
+            <section class="content-section" id="user-conduct">
+                <h3>4. User Conduct and Responsibilities</h3>
+                <p>You agree not to misuse the Service. Prohibited activities include, but are not limited to:</p>
+                <ul>
+                    <li>Uploading, posting, or transmitting any Content that is unlawful, harmful, threatening, abusive, harassing, defamatory, vulgar, obscene, libelous, invasive of another's privacy, hateful, or racially, ethnically, or otherwise objectionable.</li>
+                    <li>Submitting Content that infringes upon any patent, trademark, trade secret, copyright, or other proprietary rights of any party (including plagiarism).</li>
+                    <li>Impersonating any person or entity or falsely stating or misrepresenting your affiliation with a person or entity.</li>
+                    <li>Engaging in spamming, phishing, distributing malware, or attempting unauthorized access to accounts or systems.</li>
+                    <li>Attempting to interfere with, compromise the system integrity or security, or decipher any transmissions to or from the servers running the Service.</li>
+                    <li>Using the Service for any illegal purpose or in violation of any local, state, national, or international law.</li>
+                    <li>Harassing, abusing, stalking, or harming another person, including sending unwelcome communications.</li>
+                    <li>Using automated systems (bots, scrapers) to access the Service in a manner that sends more request messages to our servers than a human can reasonably produce in the same period using a conventional web browser (except for public search engine indexing).</li>
+                </ul>
+                 <p>You are solely responsible for your conduct and any Content you submit, post, or display on the Service.</p>
+            </section>
+
+            <section class="content-section" id="content-submission">
+                <h3>5. Content Submission (Research Papers, etc.)</h3>
+                 <h4>5.1 Ownership and License</h4>
+                <p><strong>You retain full ownership rights to the User Content, including Research Papers, you submit to the Service.</strong></p>
+                <p>By submitting User Content to Naman's Hub, you grant us a worldwide, non-exclusive, royalty-free, sublicensable, and transferable license to use, host, store, reproduce, modify (e.g., formatting changes for display, creating derivatives like thumbnails), publish, publicly display, publicly perform, and distribute your User Content solely for the purposes of operating, providing, promoting, and improving the Service. This includes making your Research Papers accessible to other Users according to the visibility settings you choose (if applicable).</p>
+                 <p>This license continues even if you stop using our Services, primarily for archival purposes and because Content shared publicly may be difficult to completely remove. However, the license ends when you explicitly delete your User Content or your account, except (a) to the extent your Content was shared with others who have not deleted it, and (b) for our system backups and archival copies maintained for a reasonable period.</p>
+                 <h4>5.2 User Representations and Warranties</h4>
+                <p>You represent and warrant that:</p>
+                <ul>
+                    <li>You own the User Content submitted by you or otherwise have all necessary licenses, rights, consents, and permissions to grant the license set forth in these Terms.</li>
+                    <li>Your User Content does not infringe, violate, or misappropriate any third-party right, including any copyright, trademark, patent, trade secret, moral right, privacy right, right of publicity, or any other intellectual property or proprietary right.</li>
+                    <li>Your User Content is accurate, not misleading, and complies with all applicable laws, regulations, and ethical guidelines relevant to your field of research.</li>
+                    <li>Your User Content adheres to academic integrity standards and is free from fabrication, falsification, and plagiarism.</li>
+                    <li>You have obtained any necessary ethical approvals, institutional review board (IRB) permissions, or consents for research involving human or animal subjects presented in your Research Paper, and such documentation can be provided upon request.</li>
+                    <li>Your User Content does not contain any viruses, adware, spyware, worms, or other malicious code.</li>
+                </ul>
+                 <h4>5.3 Content Review and Removal</h4>
+                <p>Naman's Hub does not undertake to pre-screen User Content. However, we reserve the right (but assume no obligation) to review, refuse, filter, modify, or remove any User Content that we believe, in our sole discretion, violates these Terms, infringes intellectual property rights, is harmful or objectionable, or for any other reason without prior notice. We are not responsible for any delay or failure to remove such Content.</p>
+                 <h4>5.4 Plagiarism Policy</h4>
+                 <p>Naman's Hub has a zero-tolerance policy towards plagiarism. Submission of plagiarized work constitutes a serious breach of these Terms and academic ethics. We may utilize plagiarism detection software. Confirmed instances of plagiarism may result in immediate content removal, account suspension, permanent termination, and potential notification to relevant institutions or authorities.</p>
+                 <h4>5.5 Archival and Preservation</h4>
+                 <p>While we strive to maintain the accessibility of published Content, Naman's Hub does not guarantee permanent archival or preservation of User Content. Authors are encouraged to maintain their own backups and consider depositing their work in established institutional or subject repositories.</p>
+            </section>
+
+             <section class="content-section" id="intellectual-property">
+                <h3>6. Intellectual Property Rights</h3>
+                <h4>6.1 Naman's Hub IP</h4>
+                <p>The Service itself, including its look and feel, visual interfaces, interactive features, graphics, design, compilation, computer code, products, software, aggregate user review ratings, and all other elements and components of the Service provided by Naman's Hub (the "Naman's Hub IP") are protected by copyright, trade dress, patent, and trademark laws, international conventions, and all other relevant intellectual property and proprietary rights, and applicable laws. All Naman's Hub IP is the property of Naman's Hub or its subsidiaries or affiliated companies and/or third-party licensors. You may not sell, license, distribute, copy, modify, publicly perform or display, transmit, publish, edit, adapt, create derivative works from, or otherwise make unauthorized use of the Naman's Hub IP.</p>
+                 <h4>6.2 User Content IP</h4>
+                 <p>As stated in Section 5.1, you retain ownership of your User Content. We respect the intellectual property rights of others and expect our Users to do the same.</p>
+                 <h4>6.3 Copyright Infringement (DMCA Compliance)</h4>
+                <p>We comply with the provisions of the Digital Millennium Copyright Act (DMCA). If you believe that your copyrighted work has been copied in a way that constitutes copyright infringement and is accessible via the Service, please notify our designated copyright agent. You can find our DMCA policy and contact information here: [Link to DMCA/Copyright Policy Page - **Create this separately and link it**]. We will respond expeditiously to notices of alleged copyright infringement that comply with the DMCA and other applicable law.</p>
+            </section>
+
+             <section class="content-section" id="disclaimers">
+                <h3>7. Disclaimers and Limitation of Liability</h3>
+                 <h4>7.1 No Warranty</h4>
+                <p>THE SERVICE AND ALL CONTENT THEREIN ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMISSIBLE PURSUANT TO APPLICABLE LAW, NAMAN'S HUB, ITS SUBSIDIARIES, AFFILIATES, AND LICENSORS DISCLAIM ALL WARRANTIES, STATUTORY, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT OF PROPRIETARY RIGHTS. NO ADVICE OR INFORMATION, WHETHER ORAL OR WRITTEN, OBTAINED BY YOU FROM NAMAN'S HUB OR THROUGH THE SERVICE WILL CREATE ANY WARRANTY NOT EXPRESSLY STATED HEREIN.</p>
+                <p>NAMAN'S HUB DOES NOT WARRANT THAT THE SERVICE OR ANY DATA, USER CONTENT, FUNCTIONS, OR ANY OTHER INFORMATION OFFERED ON OR THROUGH THE SERVICE WILL BE UNINTERRUPTED, OR FREE OF ERRORS, VIRUSES, OR OTHER HARMFUL COMPONENTS, AND DOES NOT WARRANT THAT ANY OF THE FOREGOING WILL BE CORRECTED.</p>
+                 <h4>7.2 User Content Disclaimer</h4>
+                 <p>NAMAN'S HUB IS A PLATFORM. WE DO NOT ENDORSE, SUPPORT, REPRESENT OR GUARANTEE THE COMPLETENESS, TRUTHFULNESS, ACCURACY, RELIABILITY, OR SCIENTIFIC VALIDITY OF ANY USER CONTENT POSTED VIA THE SERVICE. YOU ACKNOWLEDGE THAT ANY RELIANCE ON MATERIAL POSTED VIA THE SERVICE WILL BE AT YOUR OWN RISK. YOU UNDERSTAND THAT BY USING THE SERVICE, YOU MAY BE EXPOSED TO CONTENT THAT MIGHT BE OFFENSIVE, HARMFUL, INACCURATE, MISLEADING, OR OTHERWISE INAPPROPRIATE. ALL CONTENT IS THE SOLE RESPONSIBILITY OF THE PERSON WHO ORIGINATED SUCH CONTENT. WE MAY NOT MONITOR OR CONTROL THE CONTENT POSTED VIA THE SERVICE, AND WE CANNOT TAKE RESPONSIBILITY FOR SUCH CONTENT.</p>
+                 <h4>7.3 Limitation of Liability</h4>
+                <p>TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL NAMAN'S HUB, ITS AFFILIATES, OFFICERS, DIRECTORS, EMPLOYEES, AGENTS, SUPPLIERS OR LICENSORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM:</p>
+                <ul>
+                   <li>(a) YOUR ACCESS TO OR USE OF OR INABILITY TO ACCESS OR USE THE SERVICE;</li>
+                   <li>(b) ANY CONDUCT OR CONTENT OF ANY THIRD PARTY ON THE SERVICE, INCLUDING WITHOUT LIMITATION, ANY DEFAMATORY, OFFENSIVE, OR ILLEGAL CONDUCT OF OTHER USERS OR THIRD PARTIES;</li>
+                   <li>(c) ANY CONTENT OBTAINED FROM THE SERVICE (INCLUDING RELIANCE THEREON); OR</li>
+                   <li>(d) UNAUTHORIZED ACCESS, USE, OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT.</li>
+                </ul>
+                <p>IN NO EVENT SHALL THE AGGREGATE LIABILITY OF NAMAN'S HUB EXCEED THE GREATER OF ONE HUNDRED U.S. DOLLARS (U.S. $100.00) OR THE AMOUNT YOU PAID NAMAN'S HUB, IF ANY, IN THE PAST SIX MONTHS FOR THE SERVICES GIVING RISE TO THE CLAIM.</p>
+                <p>THE LIMITATIONS OF THIS SUBSECTION SHALL APPLY TO ANY THEORY OF LIABILITY, WHETHER BASED ON WARRANTY, CONTRACT, STATUTE, TORT (INCLUDING NEGLIGENCE) OR OTHERWISE, AND WHETHER OR NOT NAMAN'S HUB HAS BEEN INFORMED OF THE POSSIBILITY OF ANY SUCH DAMAGE, AND EVEN IF A REMEDY SET FORTH HEREIN IS FOUND TO HAVE FAILED OF ITS ESSENTIAL PURPOSE.</p>
+            </section>
+
+            <section class="content-section" id="indemnification">
+                <h3>8. Indemnification</h3>
+                <p>You agree to defend, indemnify, and hold harmless Naman's Hub and its affiliates, officers, directors, employees, and agents from and against any and all claims, damages, obligations, losses, liabilities, costs or debt, and expenses (including but not limited to attorney's fees) arising from: (i) your use of and access to the Service; (ii) your violation of any term of these Terms; (iii) your violation of any third-party right, including without limitation any copyright, property, privacy, or publicity right; or (iv) any claim that your User Content caused damage to a third party. This defense and indemnification obligation will survive these Terms and your use of the Service.</p>
+            </section>
+
+            <section class="content-section" id="termination">
+                 <h3>9. Termination</h3>
+                 <h4>9.1 Termination by You</h4>
+                 <p>You may terminate your agreement with Naman's Hub at any time by discontinuing your use of the Service and deleting your account (if applicable). </p>
+                 <h4>9.2 Termination by Naman's Hub</h4>
+                 <p>We may suspend or terminate your access to or use of the Service at any time, for any reason or no reason, including, but not limited to, if we reasonably believe: (i) you have violated these Terms, (ii) you create risk or possible legal exposure for us; (iii) our provision of the Service to you is no longer commercially viable; or (iv) for extended periods of inactivity. We will make reasonable efforts to notify you by the email address associated with your account or the next time you attempt to access your account, depending on the circumstances.</p>
+                 <h4>9.3 Survival</h4>
+                 <p>Sections 5 (Content Submission - regarding licenses for existing content and representations), 6 (Intellectual Property), 7 (Disclaimers), 8 (Indemnification), 9 (Termination - this survival clause), 10 (Governing Law), and 12 (Miscellaneous) shall survive any termination or expiration of these Terms.</p> <!-- Corrected Section number from 11 to 12 -->
+            </section>
+
+             <section class="content-section" id="governing-law">
+                <h3>10. Governing Law and Dispute Resolution</h3>
+                <p>These Terms shall be governed by the laws of [Your State/Country - **Specify the Jurisdiction**], without regard to its conflict of law provisions.</p>
+                <p>Any dispute arising from or relating to the subject matter of these Terms shall be finally settled by arbitration in [Your City, State/Country - **Specify Location**], using the English language in accordance with the Arbitration Rules and Procedures of [Name of Arbitration Association, e.g., JAMS, AAA - **Choose One**] then in effect, by one commercial arbitrator with substantial experience in resolving intellectual property and commercial contract disputes. Judgment upon the award rendered by the arbitrator may be entered in any court having jurisdiction thereof. Notwithstanding the foregoing obligation to arbitrate disputes, each party shall have the right to pursue injunctive or other equitable relief at any time, from any court of competent jurisdiction.</p>
+                 <p><strong>For any dispute with Naman's Hub, you agree to first contact us at [Your Contact Email for Legal Matters] and attempt to resolve the dispute with us informally.</strong></p>
+                 <div class="notice">
+                     <strong>Note:</strong> Dispute resolution clauses vary significantly by jurisdiction and business needs. Consult legal counsel to draft appropriate clauses for binding arbitration, class action waivers, and governing law specific to your location and user base.
+                 </div>
+            </section>
+
+             <section class="content-section" id="changes-to-terms">
+                <h3>11. Changes to Terms</h3>
+                <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion. We may provide notice via email, a notification on the Service, or by updating the "Last Updated" date at the top of these Terms.</p>
+                <p>By continuing to access or use our Service after any revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, you are no longer authorized to use the Service.</p>
+            </section>
+
+             <section class="content-section" id="miscellaneous">
+                <h3>12. Miscellaneous</h3>
+                <ul>
+                    <li><strong>Entire Agreement:</strong> These Terms, together with the Privacy Policy and any other agreements incorporated by reference, constitute the entire agreement between you and Naman's Hub concerning the Service and supersede all prior or contemporaneous communications and proposals (whether oral, written, or electronic) between you and Naman's Hub.</li>
+                    <li><strong>Severability:</strong> If any provision of these Terms is found to be unenforceable or invalid, that provision will be limited or eliminated to the minimum extent necessary so that the Terms will otherwise remain in full force and effect and enforceable.</li>
+                    <li><strong>Waiver:</strong> The failure of Naman's Hub to exercise or enforce any right or provision of these Terms shall not constitute a waiver of such right or provision. No waiver of any term of these Terms shall be deemed a further or continuing waiver of such term or any other term.</li>
+                    <li><strong>Assignment:</strong> These Terms are personal to you, and are not assignable, transferable, or sublicensable by you except with our prior written consent. Naman's Hub may assign, transfer, or delegate any of its rights and obligations hereunder without consent.</li>
+                    <li><strong>Headings:</strong> The section and paragraph headings in these Terms are for convenience only and shall not affect their interpretation.</li>
+                    <li><strong>No Agency:</strong> No agency, partnership, joint venture, or employment relationship is created as a result of these Terms, and you do not have any authority of any kind to bind Naman's Hub in any respect whatsoever.</li>
+                </ul>
+            </section>
+
+             <section class="content-section" id="contact">
+                <h3>13. Contact Information</h3>
+                <p>If you have any questions about these Terms, please contact us at:</p>
+                <p>
+                    Naman's Hub<br>
+                    example@example.com<br>
+                    Nepal
+                </p>
+            </section>
+        </main>
+
+        <!-- Acceptance and Actions -->
+        <div class="actions-container">
+            <div class="acceptance-section">
+                <input type="checkbox" id="accept-terms-checkbox">
+                <label for="accept-terms-checkbox">I have read and agree to the Terms of Service.</label>
+            </div>
+            <div class="button-group">
+                 <button id="accept-terms-button" class="action-button" disabled>Accept Terms</button>
+                 <button id="print-terms-button" class="action-button print-button">Print Terms</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© <span id="current-year"></span> Naman's Hub. All rights reserved.</p>
+            <p><a href="#">Privacy Policy</a> | <a href="#">Contact Us</a></p> <!-- Add actual links -->
+        </footer>
+
+    </div> <!-- /container -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocList = document.getElementById('toc-list');
+            const sections = document.querySelectorAll('.content-section');
+            const acceptCheckbox = document.getElementById('accept-terms-checkbox');
+            const acceptButton = document.getElementById('accept-terms-button');
+            const printButton = document.getElementById('print-terms-button');
+            const tocContainer = document.getElementById('toc-container');
+
+            // --- Populate Table of Contents ---
+            sections.forEach(section => {
+                const titleElement = section.querySelector('h3');
+                if (titleElement && section.id) {
+                    const titleText = titleElement.textContent;
+                    const listItem = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = `#${section.id}`;
+                    link.textContent = titleText;
+                     // Click event listener remains simple - smooth scroll is handled by CSS
+                    listItem.appendChild(link);
+                    tocList.appendChild(listItem);
+                }
+            });
+
+            // --- Enable/Disable Accept Button ---
+            acceptCheckbox.addEventListener('change', function() {
+                acceptButton.disabled = !this.checked;
+                // Style updates are handled by the :disabled CSS pseudo-class now
+            });
+
+            // --- Simulate Acceptance Action ---
+            acceptButton.addEventListener('click', function() {
+                if (!acceptCheckbox.checked) {
+                    // Button should be disabled, but check just in case
+                    return;
+                }
+                alert('Terms Accepted! (This is a simulation - implement actual logic here)');
+                // Example: window.location.href = '/next-step-page';
+            });
+
+            // --- Print Button Functionality ---
+            printButton.addEventListener('click', function() {
+                window.print();
+            });
+
+            // --- Dynamic Footer Year ---
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+
+            // --- TOC Active Link Highlighting on Scroll ---
+            const tocLinks = tocList.querySelectorAll('a');
+
+            // Adjust rootMargin based on the sticky TOC offset for better accuracy
+            // Top margin: Negative value slightly less than sticky offset to trigger before section top hits TOC bottom
+            // Bottom margin: Negative value to define the "active" zone end towards the bottom
+            const stickyOffsetValue = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sticky-toc-offset'), 10) || 130;
+            const topMargin = -(stickyOffsetValue) + 10; // Trigger slightly before hitting the TOC
+            const bottomMargin = -(window.innerHeight - stickyOffsetValue - 100); // Try to deactivate when section bottom leaves a 100px zone below TOC
+
+            const sectionObserverOptions = {
+              root: null, // relative to document viewport
+              rootMargin: `${topMargin}px 0px ${bottomMargin}px 0px`,
+              threshold: 0 // Trigger as soon as any part enters/leaves margin
+            };
+
+            let currentlyActiveLink = null; // Keep track of the active link
+
+            const highlightCurrentSection = (entries, observer) => {
+              entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const link = tocList.querySelector(`a[href="#${id}"]`);
+
+                if (!link) return;
+
+                 // More robust check: Check if element is truly intersecting within the adjusted margins
+                 if (entry.isIntersecting && entry.intersectionRatio > 0) {
+                     // Check if bounding rect top is below the sticky TOC offset (or close to it)
+                     const rect = entry.boundingClientRect;
+                     if (rect.top >= 0 && rect.top < (stickyOffsetValue + 50)) { // Section top is within range below TOC
+                         if (currentlyActiveLink) {
+                             currentlyActiveLink.classList.remove('active');
+                         }
+                         link.classList.add('active');
+                         currentlyActiveLink = link;
+                          // Optional: Scroll TOC to keep active link visible
+                          // link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                     }
+                 } else {
+                      // Check if this was the link that *was* active, and remove if it's no longer intersecting
+                     // This helps when scrolling past sections quickly
+                     if (link === currentlyActiveLink) {
+                          link.classList.remove('active');
+                          currentlyActiveLink = null; // Reset tracker
+                     }
+                 }
+              });
+
+                // Fallback: If no link is active after processing entries (e.g., scrolled between sections),
+                // try to find the *first* visible one based on boundingClientRect as a fallback.
+                if (!currentlyActiveLink) {
+                    let firstVisibleSection = null;
+                    for (const section of sections) {
+                        const rect = section.getBoundingClientRect();
+                        if (rect.top >= stickyOffsetValue && rect.top < window.innerHeight * 0.8) { // Check if top is below TOC and somewhat visible
+                            firstVisibleSection = section;
+                            break;
+                        }
+                    }
+                    if(firstVisibleSection){
+                         const id = firstVisibleSection.getAttribute('id');
+                         const link = tocList.querySelector(`a[href="#${id}"]`);
+                         if(link){
+                            link.classList.add('active');
+                            currentlyActiveLink = link;
+                         }
+                    } else if (window.scrollY < 100 && tocLinks.length > 0) { // At the very top
+                         tocLinks.forEach(l => l.classList.remove('active'));
+                         tocLinks[0].classList.add('active');
+                         currentlyActiveLink = tocLinks[0];
+                    }
+                }
+            };
+
+            // Only observe if IntersectionObserver is supported
+            if ('IntersectionObserver' in window) {
+                 const observer = new IntersectionObserver(highlightCurrentSection, sectionObserverOptions);
+                 sections.forEach(section => {
+                     observer.observe(section);
+                 });
+            } else {
+                // Basic fallback or no highlighting if IntersectionObserver isn't supported
+                console.warn("IntersectionObserver not supported, TOC highlighting might not work correctly.");
+            }
+
+             // Initial check on load (slight delay for accurate layout)
+             setTimeout(() => {
+                 let firstVisibleSection = null;
+                 let minTop = Infinity;
+
+                 sections.forEach(section => {
+                     const rect = section.getBoundingClientRect();
+                     // Find the section whose top is closest to (and below) the sticky offset
+                     if (rect.top >= 0 && rect.top < minTop) { // Check if visible and potentially the highest visible one
+                          // Refine check: Must be below the expected sticky position
+                         if (rect.top >= (stickyOffsetValue - 20)) { // Allow a small tolerance
+                             minTop = rect.top;
+                             firstVisibleSection = section;
+                         } else if (window.scrollY < 100 && rect.top < stickyOffsetValue) {
+                             // If we are near the top and the first section starts high, it might be the one
+                             minTop = rect.top;
+                             firstVisibleSection = section;
+                         }
+                     }
+                 });
+
+                 if (firstVisibleSection) {
+                     const id = firstVisibleSection.getAttribute('id');
+                     const link = tocList.querySelector(`a[href="#${id}"]`);
+                     tocLinks.forEach(l => l.classList.remove('active'));
+                     if (link) {
+                         link.classList.add('active');
+                         currentlyActiveLink = link;
+                     }
+                 } else if (window.scrollY < 100 && tocLinks.length > 0) {
+                      // If scrolled to the very top, highlight the first item
+                      tocLinks.forEach(l => l.classList.remove('active'));
+                      tocLinks[0].classList.add('active');
+                      currentlyActiveLink = tocLinks[0];
+                 }
+             }, 150); // Slightly longer delay
+
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+/* Responsive Styles */
+
+@media (max-width: 1024px) {
+  .about-content {
+    flex-direction: column;
+  }
+
+  .about-image {
+    order: -1;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav-links,
+  .auth-buttons {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+
+  .hero h2 {
+    font-size: 36px;
+  }
+
+  .search-container {
+    flex-direction: column;
+  }
+
+  .search-container input {
+    border-radius: var(--border-radius);
+    margin-bottom: 10px;
+  }
+
+  .search-container button {
+    border-radius: var(--border-radius);
+  }
+
+  .section-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .list-view .paper-card {
+    flex-direction: column;
+  }
+
+  .list-view .paper-image {
+    width: 100%;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .newsletter-form button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 60px 0;
+  }
+
+  .hero h2 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .papers-section,
+  .categories-section,
+  .about-section {
+    padding: 60px 0;
+  }
+
+  .section-header h2,
+  .categories-section h2,
+  .about-text h2,
+  .newsletter-content h2 {
+    font-size: 24px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat-number {
+    font-size: 36px;
+  }
+
+  .stat-label {
+    font-size: 16px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+
+  .paper-details-actions {
+    flex-direction: column;
+  }
+
+  .paper-details-actions .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-filters {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filter-btn {
+    width: 100%;
+  }
+}
+

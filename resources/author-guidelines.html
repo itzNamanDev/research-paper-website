@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Guidelines - Naman's Hub</title>
+    <style>
+        /* --- Basic Reset & Body Styling --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa; /* Light background */
+            padding: 20px;
+        }
+
+        /* --- Container --- */
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff; /* White card background */
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #007bff; /* Accent color border */
+        }
+
+        /* --- Header --- */
+        h1 {
+            color: #0056b3; /* Darker blue for heading */
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .intro-text {
+            text-align: center;
+            color: #555;
+            margin-bottom: 35px;
+            font-size: 1.1em;
+        }
+
+        /* --- Accordion Styling --- */
+        .accordion {
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .accordion-header {
+            background-color: #f1f1f1; /* Light gray header */
+            color: #444;
+            cursor: pointer;
+            padding: 18px 20px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-header:hover,
+        .accordion-header.active {
+            background-color: #e0e7ff; /* Lighter blue on hover/active */
+            color: #0056b3;
+        }
+
+        /* --- Accordion Icon (Plus/Minus) --- */
+        .accordion-header::after {
+            content: '+'; /* Plus sign */
+            font-size: 1.4em;
+            color: #007bff;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active::after {
+            content: '−'; /* Minus sign */
+            transform: rotate(180deg); /* Optional: rotate the minus */
+        }
+
+        /* --- Accordion Content --- */
+        .accordion-content {
+            max-height: 0; /* Initially hidden */
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out; /* Smooth transition */
+            background-color: #ffffff;
+            padding: 0 20px; /* No vertical padding when hidden */
+        }
+
+        .accordion-content.active {
+             /* padding set by JS to scrollHeight, add padding */
+             padding: 20px 20px;
+        }
+
+        .accordion-content p {
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .accordion-content ul,
+        .accordion-content ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .accordion-content li {
+            margin-bottom: 8px;
+        }
+
+        .accordion-content strong {
+            color: #0056b3; /* Highlight important terms */
+        }
+
+        .accordion-content a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .accordion-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Footer Contact --- */
+        .contact-info {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px dashed #ccc;
+            color: #666;
+        }
+        .contact-info p {
+            margin-bottom: 5px;
+        }
+         .contact-info a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 25px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .intro-text {
+                font-size: 1em;
+            }
+            .accordion-header {
+                font-size: 1em;
+                padding: 15px 15px;
+            }
+             .accordion-content {
+                 padding: 0 15px; /* Adjust padding */
+             }
+             .accordion-content.active {
+                 padding: 15px 15px;
+             }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Author Guidelines</h1>
+        <p class="intro-text">Welcome to Naman's Hub! We appreciate your interest in contributing. Please review these guidelines carefully before submitting your manuscript.</p>
+
+        <div class="accordion">
+
+            <!-- Section 1: Scope and Policies -->
+            <div class="accordion-item">
+                <button class="accordion-header">Scope and Policies</button>
+                <div class="accordion-content">
+                    <p>Naman's Hub publishes original research papers, review articles, case studies, and short communications across various fields (<em>Specify fields here, e.g., computer science, social sciences, etc.</em>).</p>
+                    <p>Submissions must be original work, not previously published or currently under review elsewhere. All authors must agree to the submission and the manuscript content.</p>
+                    <p><strong>Key Policies:</strong></p>
+                    <ul>
+                        <li>Focus on high-quality, impactful research.</li>
+                        <li>Adherence to ethical standards in research and publication.</li>
+                        <li>Open Access options may be available (<em>Specify if applicable</em>).</li><br>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 2: Manuscript Preparation -->
+            <div class="accordion-item">
+                <button class="accordion-header">Manuscript Preparation</button>
+                <div class="accordion-content">
+                    <p>Prepare your manuscript clearly and concisely. Adherence to these formatting guidelines will expedite the review process.</p>
+                    <p><strong>General Formatting:</strong></p>
+                    <ul>
+                        <li><strong>File Format:</strong> Submit manuscripts in Microsoft Word (.doc, .docx) or LaTeX (.tex with accompanying PDF).</li>
+                        <li><strong>Language:</strong> English (American or British spelling is acceptable, but be consistent).</li>
+                        <li><strong>Font:</strong> Times New Roman, 12-point font size.</li>
+                        <li><strong>Spacing:</strong> Double-spaced text throughout, including abstract, references, and figure captions.</li>
+                        <li><strong>Margins:</strong> Standard margins (e.g., 1 inch or 2.5 cm on all sides).</li>
+                        <li><strong>Page Numbers:</strong> Consecutively number all pages.</li><br>
+                    </ul>
+                    <p><strong>Structure:</strong></p>
+                    <ol>
+                        <li><strong>Title Page:</strong> Title, author names and affiliations, corresponding author details (email, address).</li>
+                        <li><strong>Abstract:</strong> A brief summary (typically 150-250 words) outlining the purpose, methods, key findings, and conclusions. Include 3-5 keywords.</li>
+                        <li><strong>Introduction:</strong> Background, problem statement, relevance, and objectives of the study.</li>
+                        <li><strong>Methods:</strong> Detailed description of the methodology, allowing replication.</li>
+                        <li><strong>Results:</strong> Clear presentation of findings, using tables and figures where appropriate.</li>
+                        <li><strong>Discussion:</strong> Interpretation of results, comparison with existing literature, limitations, and implications.</li>
+                        <li><strong>Conclusion:</strong> Summary of key findings and future directions.</li>
+                        <li><strong>Acknowledgements (Optional):</strong> Funding sources, individuals who provided assistance.</li>
+                        <li><strong>References:</strong> Use a consistent citation style (e.g., APA, MLA, Chicago, Vancouver - <em>Specify the required style</em>). Ensure all citations in the text appear in the reference list and vice versa.</li>
+                        <li><strong>Appendices (Optional):</strong> Supplementary material.</li><br>
+                    </ol>
+                    <p><strong>Figures and Tables:</strong></p>
+                    <ul>
+                        <li>Embed figures and tables within the text near their first mention, or provide them at the end of the manuscript.</li>
+                        <li>Ensure figures are high resolution (min. 300 DPI).</li>
+                        <li>Provide clear captions for all figures and titles for all tables.</li><br>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 3: Submission Process -->
+            <div class="accordion-item">
+                <button class="accordion-header">Submission Process</button>
+                <div class="accordion-content">
+                    <p>Manuscripts should be submitted through our online submission portal (<em>Provide Link Here if applicable, or specify email submission</em>).</p>
+                    <p><strong>Required Files:</strong></p>
+                    <ul>
+                        <li><strong>Manuscript File:</strong> Main text including tables/figures (or separate figure files if required).</li>
+                        <li><strong>Cover Letter (Recommended):</strong> Briefly introduce your work, highlight its significance, and confirm adherence to ethical guidelines. State that the work is original and not under consideration elsewhere.</li>
+                        <li><strong>Conflict of Interest Statement:</strong> Disclose any potential conflicts of interest.</li>
+                        <li><strong>Author Contribution Statement (if applicable):</strong> Detail the contribution of each author.</li><br>
+                    </ul>
+                    <p>Upon submission, you will receive an acknowledgement email with a manuscript ID. You can track the status of your submission through the portal (<em>or mention how status updates are provided</em>).</p><br>
+                </div>
+            </div>
+
+            <!-- Section 4: Ethical Considerations -->
+            <div class="accordion-item">
+                <button class="accordion-header">Ethical Considerations</button>
+                <div class="accordion-content">
+                    <p>Naman's Hub is committed to upholding the highest standards of publication ethics.</p>
+                    <ul>
+                        <li><strong>Plagiarism:</strong> All submissions will be checked for plagiarism using appropriate software. Any detected plagiarism will lead to rejection. Proper citation is mandatory.</li>
+                        <li><strong>Authorship:</strong> All listed authors must have made significant contributions to the research and manuscript preparation and must approve the final version.</li>
+                        <li><strong>Data Availability:</strong> Authors may be encouraged or required to make underlying data available (<em>Specify policy</em>).</li>
+                        <li><strong>Conflicts of Interest:</strong> Authors must declare any financial or non-financial conflicts of interest that could influence the work.</li>
+                        <li><strong>Human and Animal Rights:</strong> If the research involves human participants or animals, appropriate ethical approval (e.g., IRB, IACUC) must have been obtained and stated in the manuscript. Informed consent must be obtained for human participants.</li><br>
+                    </ul>
+                </div>
+            </div>
+
+             <!-- Section 5: Review Process -->
+             <div class="accordion-item">
+                <button class="accordion-header">Review Process</button>
+                <div class="accordion-content">
+                    <p>All submissions undergo a rigorous peer-review process.</p>
+                    <ul>
+                        <li><strong>Initial Screening:</strong> The editorial team checks the manuscript for scope, formatting, and basic quality.</li>
+                        <li><strong>Peer Review:</strong> Manuscripts passing the initial screening are sent to independent expert reviewers. We employ a [<em>Specify: e.g., single-blind, double-blind</em>] review process.</li>
+                        <li><strong>Decision:</strong> Based on reviewer feedback, the editor makes a decision (Accept, Minor Revision, Major Revision, Reject).</li>
+                        <li><strong>Revisions:</strong> If revisions are requested, authors should address all reviewer comments thoroughly and resubmit within the specified timeframe.</li><br>
+                    </ul>
+                    <p>We aim to provide an initial decision within [<em>Specify timeframe, e.g., 6-8 weeks</em>], but this may vary depending on reviewer availability.</p><br>
+                </div>
+            </div>
+
+            <!-- Section 6: Post-Acceptance -->
+            <div class="accordion-item">
+                <button class="accordion-header">Post-Acceptance</button>
+                <div class="accordion-content">
+                    <p>Once your manuscript is accepted:</p>
+                    <ul>
+                        <li><strong>Proofreading:</strong> You will receive proofs for final checking. Correct any typographical errors promptly. Major changes are not permitted at this stage.</li>
+                        <li><strong>Copyright:</strong> Authors will typically be asked to sign a copyright transfer agreement or select a Creative Commons license (<em>Specify details</em>).</li>
+                        <li><strong>Publication Fees (if any):</strong> Clearly state any Article Processing Charges (APCs) or submission fees. Example: "Naman's Hub is currently free to publish in / requires an APC of $XXX upon acceptance."</li>
+                        <li><strong>Publication:</strong> Your article will be formatted and published online.</li><br>
+                    </ul>
+                </div>
+            </div>
+
+        </div> <!-- End Accordion -->
+
+        <div class="contact-info">
+            <p>If you have any questions regarding these guidelines or the submission process, please contact the editorial office:</p>
+            <p><strong>Email:</strong> <a href="mailto:example@example.com">example@example.com</a></p>
+            <p><em>Thank you for considering Naman's Hub for your research!</em></p><br>
+        </div>
+
+    </div> <!-- End Container -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function () {
+                    const currentlyActiveHeader = document.querySelector('.accordion-header.active');
+                    const currentlyActiveContent = document.querySelector('.accordion-content.active');
+
+                    // The content panel associated with the clicked header
+                    const content = this.nextElementSibling;
+
+                    // If the clicked header is not the currently active one OR if there is no active header
+                    if (currentlyActiveHeader && currentlyActiveHeader !== this) {
+                        // Close the previously active item
+                        currentlyActiveHeader.classList.remove('active');
+                        currentlyActiveContent.classList.remove('active');
+                        currentlyActiveContent.style.maxHeight = null; // Use null to let CSS handle transition back
+                        currentlyActiveContent.style.paddingTop = '0';
+                        currentlyActiveContent.style.paddingBottom = '0';
+                    }
+
+                    // Toggle the clicked item
+                    this.classList.toggle('active');
+                    content.classList.toggle('active');
+
+                    if (content.classList.contains('active')) {
+                        // Set max-height to the scroll height to open it
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        // Add padding back (needs slight delay or careful handling with transition)
+                        // Using transition on padding itself in CSS is often smoother
+                        content.style.paddingTop = '20px'; // Match CSS padding
+                        content.style.paddingBottom = '20px'; // Match CSS padding
+                    } else {
+                        // Close it
+                        content.style.maxHeight = null;
+                        content.style.paddingTop = '0';
+                        content.style.paddingBottom = '0';
+                    }
+                });
+            });
+
+             // Optional: Open the first accordion item by default
+             // const firstHeader = document.querySelector('.accordion-header');
+             // if (firstHeader) {
+             //    firstHeader.click(); // Simulate a click to open it
+             // }
+        });
+    </script>
+
+</body>
+</html>

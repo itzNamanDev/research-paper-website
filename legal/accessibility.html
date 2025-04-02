@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility - Naman's Hub</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* --- CSS Reset & Base Styles --- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary-color: #0056b3; /* Professional Blue */
+            --secondary-color: #007bff; /* Brighter Blue Accent */
+            --light-bg: #f8f9fa;
+            --dark-text: #343a40;
+            --light-text: #ffffff;
+            --border-color: #dee2e6;
+            --accent-gradient: linear-gradient(135deg, #007bff, #0056b3);
+            --box-shadow: 0 4px 15px rgba(0, 86, 179, 0.15);
+            --hover-shadow: 0 6px 20px rgba(0, 86, 179, 0.25);
+            --border-radius: 8px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- Header --- */
+        .site-header {
+            background: var(--accent-gradient);
+            color: var(--light-text);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-bottom-left-radius: 50% 20px; /* Curve effect */
+            border-bottom-right-radius: 50% 20px; /* Curve effect */
+            margin-bottom: 2rem;
+        }
+
+        .site-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .site-header p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* --- Main Content Area --- */
+        .main-content {
+            flex-grow: 1;
+            max-width: 900px;
+            width: 95%;
+            margin: 0 auto 3rem auto; /* Added bottom margin */
+            padding: 1.5rem;
+        }
+
+        .intro-section {
+            background-color: var(--light-text);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .intro-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: flex; /* Align icon and text */
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem; /* Space between icon and text */
+        }
+        .intro-section h2 .fa-universal-access { /* Specific icon styling if needed */
+            font-size: 1.8rem;
+        }
+
+
+        /* --- Accordion Styles --- */
+        .accordion-container {
+            background-color: var(--light-text);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden; /* Important for border-radius with children */
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-button {
+            background-color: var(--light-text);
+            color: var(--dark-text);
+            cursor: pointer;
+            padding: 1.2rem 1.5rem;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+         .accordion-button .button-text {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem; /* Space between icon and text */
+        }
+
+         .accordion-button .icon-left { /* Style for icons on the left */
+            color: var(--secondary-color);
+            font-size: 1.1em; /* Slightly larger */
+             width: 20px; /* Ensure alignment */
+             text-align: center;
+        }
+
+
+        .accordion-button:hover,
+        .accordion-button.active {
+            background-color: #eef7ff; /* Lighter blue tint */
+            color: var(--primary-color);
+        }
+
+        .accordion-button .icon-toggle { /* Renamed from .icon for clarity */
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            color: var(--secondary-color);
+        }
+
+        .accordion-button.active .icon-toggle {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            background-color: #fdfdff; /* Slightly different background */
+            padding: 0 1.5rem;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+         .accordion-content p,
+         .accordion-content ul {
+             margin-bottom: 1rem;
+         }
+         .accordion-content ul {
+             padding-left: 20px;
+             list-style: disc; /* Use disc, or consider custom icons */
+         }
+         .accordion-content strong {
+            color: var(--primary-color);
+            font-weight: 600;
+         }
+         .accordion-content a {
+             color: var(--secondary-color);
+             text-decoration: none;
+             font-weight: 600;
+             transition: color 0.2s ease;
+         }
+         .accordion-content a:hover {
+             color: var(--primary-color);
+             text-decoration: underline;
+         }
+
+
+        /* --- Feedback Section (Alternative to Contact) --- */
+        .feedback-section {
+            margin-top: 2.5rem;
+            padding: 2rem;
+            background: var(--accent-gradient);
+            color: var(--light-text);
+            text-align: center;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .feedback-section h3 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .feedback-section a {
+            color: var(--light-text);
+            text-decoration: underline;
+            font-weight: 600;
+            transition: opacity 0.2s ease;
+        }
+        .feedback-section a:hover {
+            opacity: 0.8;
+        }
+
+
+        /* --- Footer --- */
+        .site-footer {
+            background-color: var(--dark-text);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            margin-top: auto; /* Pushes footer to bottom */
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .site-header h1 {
+                font-size: 2rem;
+            }
+            .site-header p {
+                font-size: 1rem;
+            }
+            .main-content {
+                width: 95%;
+                padding: 1rem;
+            }
+            .intro-section h2 {
+                 font-size: 1.5rem; /* Adjust title size */
+                 gap: 0.5rem;
+            }
+            .intro-section h2 .fa-universal-access {
+                 font-size: 1.5rem;
+             }
+
+            .accordion-button {
+                padding: 1rem 1.2rem;
+                font-size: 1rem;
+            }
+             .accordion-button .button-text {
+                 gap: 0.5rem; /* Adjust gap */
+             }
+
+            .accordion-content {
+                 padding: 0 1.2rem;
+                 font-size: 0.9rem;
+            }
+             .intro-section, .feedback-section {
+                padding: 1.5rem;
+            }
+        }
+
+         @media (max-width: 480px) {
+             .site-header {
+                 padding: 1.5rem 0.5rem;
+                 border-bottom-left-radius: 40% 15px;
+                 border-bottom-right-radius: 40% 15px;
+             }
+             .site-header h1 {
+                 font-size: 1.8rem;
+             }
+             .site-header p {
+                 font-size: 0.9rem;
+             }
+             .intro-section h2 {
+                 font-size: 1.3rem; /* Further adjust title size */
+                 flex-direction: column; /* Stack icon and text */
+                 gap: 0.3rem;
+             }
+              .intro-section h2 .fa-universal-access {
+                 margin-bottom: 0.25rem;
+             }
+         }
+
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <h1>Naman's Hub</h1>
+        <p>Advancing Knowledge Together</p>
+    </header>
+
+    <main class="main-content">
+
+        <section class="intro-section">
+             <h2>
+                <i class="fas fa-universal-access"></i>
+                <span>Accessibility Statement</span>
+            </h2>
+            <p>Naman's Hub is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone and applying the relevant accessibility standards.</p>
+        </section>
+
+        <div class="accordion-container">
+
+            <!-- Accordion Item 1: Our Commitment -->
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false">
+                    <span class="button-text">
+                        <i class="fas fa-bullhorn icon-left"></i>
+                        Our Commitment
+                    </span>
+                    <i class="fas fa-plus icon-toggle"></i>
+                </button>
+                <div class="accordion-content">
+                    <p>We believe that access to knowledge is a fundamental right. Naman's Hub strives to provide a website accessible to the widest possible audience, regardless of technology or ability. We aim to comply with all applicable standards, including the <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener noreferrer">Web Content Accessibility Guidelines (WCAG) 2.1</a> level AA.</p>
+                    <p>This commitment extends to all content published on our platform, and we encourage authors to consider accessibility when preparing their manuscripts (e.g., providing alternative text for images).</p><br>
+                </div>
+            </div>
+
+            <!-- Accordion Item 2: Measures Taken -->
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false">
+                     <span class="button-text">
+                        <i class="fas fa-check-circle icon-left"></i>
+                        Measures Taken to Support Accessibility
+                     </span>
+                    <i class="fas fa-plus icon-toggle"></i>
+                </button>
+                <div class="accordion-content">
+                    <p>Naman's Hub incorporates the following measures to enhance accessibility:</p>
+                    <ul>
+                        <li><strong>Semantic HTML:</strong> Using correct HTML5 elements to structure content logically for assistive technologies.</li>
+                        <li><strong>Keyboard Navigation:</strong> Ensuring the site can be navigated effectively using only a keyboard.</li>
+                        <li><strong>Text Alternatives:</strong> Providing text alternatives (alt text) for meaningful non-text content like images and figures, where feasible.</li>
+                        <li><strong>Color Contrast:</strong> Maintaining sufficient color contrast between text and background elements.</li>
+                        <li><strong>Resizable Text:</strong> Allowing users to resize text using browser controls without loss of content or functionality.</li>
+                        <li><strong>Clear Layout:</strong> Designing with a clear and consistent layout and navigation structure.</li>
+                        <li><strong>ARIA Attributes:</strong> Implementing Accessible Rich Internet Applications (ARIA) attributes where necessary to improve dynamic content accessibility.</li>
+                        <li><strong>Ongoing Training:</strong> Providing accessibility awareness training for our staff.</li><br>
+                    </ul>
+                </div>
+            </div>
+
+             <!-- Accordion Item 3: Conformance Status -->
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false">
+                     <span class="button-text">
+                        <i class="fas fa-tasks icon-left"></i>
+                        Conformance Status
+                     </span>
+                    <i class="fas fa-plus icon-toggle"></i>
+                </button>
+                <div class="accordion-content">
+                    <p>We are actively working towards achieving WCAG 2.1 Level AA conformance. While we strive to adhere to the accepted guidelines and standards for accessibility, it may not always be possible to do so in all areas of the website, particularly concerning user-generated content or third-party integrations.</p>
+                    <p><strong>Known Limitations:</strong></p>
+                    <ul>
+                        <li>Some older archived content may not meet current standards.</li>
+                        <li>Complex figures or data visualizations within research papers might pose challenges for certain assistive technologies. We encourage authors to provide detailed descriptions.</li>
+                        <li>Content provided by third parties (e.g., embedded widgets) may not fully conform.</li>
+                    </ul>
+                    <p>We are continually seeking out solutions that will bring all areas of the site up to the same level of overall web accessibility.</p><br>
+                </div>
+            </div>
+
+
+            <!-- Accordion Item 4: Feedback and Contact Information -->
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false">
+                     <span class="button-text">
+                        <i class="fas fa-comments icon-left"></i>
+                        Feedback & Contact
+                     </span>
+                    <i class="fas fa-plus icon-toggle"></i>
+                </button>
+                <div class="accordion-content">
+                    <p>We welcome your feedback on the accessibility of Naman's Hub. If you encounter accessibility barriers or have suggestions for improvement, please let us know:</p>
+                    <ul>
+                        <li><strong>Email:</strong> <a href="#">N/A</a></li>
+                        <li><strong>Contact Form:</strong>Under Development</li>
+                        <!-- <li><strong>Phone:</strong> [Your Phone Number - Optional]</li> -->
+                    </ul>
+                    <p>Please provide specific details, including the web page URL and a description of the issue, to help us understand and address the problem effectively. We aim to respond to feedback within [e.g., 5 business days].</p>
+                     <p><em></em></p><br>
+                </div>
+            </div>
+
+            <!-- Accordion Item 5: Compatibility -->
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false">
+                     <span class="button-text">
+                        <i class="fas fa-laptop-code icon-left"></i>
+                        Compatibility with Browsers & Assistive Tech
+                     </span>
+                    <i class="fas fa-plus icon-toggle"></i>
+                </button>
+                <div class="accordion-content">
+                    <p>Naman's Hub is designed to be compatible with recent versions of major web browsers, including:</p>
+                    <ul>
+                        <li>Google Chrome</li>
+                        <li>Mozilla Firefox</li>
+                        <li>Apple Safari</li>
+                        <li>Microsoft Edge</li>
+                    </ul>
+                    <p>We also aim for compatibility with common assistive technologies, such as:</p>
+                     <ul>
+                        <li>Screen readers like JAWS, NVDA, and VoiceOver.</li>
+                        <li>Screen magnifiers.</li>
+                        <li>Speech recognition software.</li>
+                    </ul>
+                    <p>While we strive for broad compatibility, the website may not behave optimally on older browser versions or certain assistive technology combinations.</p><br>
+                </div>
+            </div>
+
+             <!-- Accordion Item 6: Future Enhancements -->
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false">
+                     <span class="button-text">
+                        <i class="fas fa-chart-line icon-left"></i>
+                        Assessment & Future Enhancements
+                     </span>
+                    <i class="fas fa-plus icon-toggle"></i>
+                </button>
+                <div class="accordion-content">
+                    <p>Accessibility is an ongoing effort at Naman's Hub. We regularly review our site using both automated tools and manual testing methods.</p>
+                    <p>Future plans include:</p>
+                     <ul>
+                        <li>Conducting formal accessibility audits periodically.</li>
+                        <li>Enhancing guidance for authors on creating accessible submissions.</li>
+                        <li>Exploring options for providing accessible alternatives for complex visualizations.</li>
+                        <li>Continuously monitoring user feedback to identify areas for improvement.</li>
+                    </ul>
+                     <p>This statement was last updated on: April 2, 2025</p><br>
+                </div>
+            </div>
+
+
+        </div> <!-- End Accordion Container -->
+
+        <section class="feedback-section">
+            <h3>Encountered an Issue?</h3>
+            <p>Your feedback is vital in helping us improve. Please <a href="mailto:accessibility@namanshub.example.com">report any accessibility barriers</a> you experience.</p>
+            <!-- Replace mailto with a link to your actual feedback form if preferred -->
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        © <span id="currentYear"></span> Naman's Hub. All Rights Reserved. | <a href="accessibility.html" style="color: inherit;">Accessibility Statement</a>
+        <!-- Optional: Add link back to accessibility page here -->
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const accordionButtons = document.querySelectorAll('.accordion-button');
+            const currentYearSpan = document.getElementById('currentYear');
+
+            // Set current year in footer
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+
+            accordionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const icon = button.querySelector('.icon-toggle'); // Use the specific class for the toggle icon
+                    const currentlyActive = button.classList.contains('active');
+
+                    // --- Optional: Close all other accordions ---
+                    accordionButtons.forEach(otherButton => {
+                        if (otherButton !== button && otherButton.classList.contains('active')) {
+                            otherButton.classList.remove('active');
+                            otherButton.setAttribute('aria-expanded', 'false');
+                            otherButton.nextElementSibling.style.maxHeight = null;
+                            otherButton.nextElementSibling.style.paddingTop = null; // Reset padding
+                            otherButton.nextElementSibling.style.paddingBottom = null; // Reset padding
+                            const otherIcon = otherButton.querySelector('.icon-toggle');
+                            if (otherIcon) {
+                                otherIcon.classList.remove('fa-minus');
+                                otherIcon.classList.add('fa-plus');
+                            }
+                        }
+                    });
+                    // --- End Optional Section ---
+
+                    // Toggle the clicked accordion
+                    if (!currentlyActive) {
+                        button.classList.add('active');
+                        button.setAttribute('aria-expanded', 'true');
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        content.style.paddingTop = '1.5rem'; // Add padding when open
+                        content.style.paddingBottom = '1.5rem'; // Add padding when open
+                        if (icon) {
+                            icon.classList.remove('fa-plus');
+                            icon.classList.add('fa-minus');
+                        }
+                    } else {
+                        button.classList.remove('active');
+                        button.setAttribute('aria-expanded', 'false');
+                        content.style.maxHeight = null;
+                        content.style.paddingTop = null; // Remove padding when closed
+                        content.style.paddingBottom = null; // Remove padding when closed
+                        if (icon) {
+                            icon.classList.remove('fa-minus');
+                            icon.classList.add('fa-plus');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

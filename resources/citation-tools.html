@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citation Tools & Guides - Naman's Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* --- Basic Reset & Body Styling --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+             scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Using Inter as a modern choice, fallback */
+            line-height: 1.7;
+            color: #343a40;
+            background-color: #f8f9fa; /* Light gray background */
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- Container --- */
+        .container {
+            max-width: 1200px; /* Wider */
+            margin: 0 auto; /* No top/bottom margin, handled by sections */
+            padding: 0 20px; /* Side padding */
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            padding: 60px 0;
+            opacity: 0; /* Hidden for scroll animation */
+            transform: translateY(50px); /* Start lower */
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .section.is-visible {
+             opacity: 1;
+             transform: translateY(0);
+        }
+        .section:nth-child(even) {
+             background-color: #ffffff; /* Alternate section backgrounds */
+        }
+         .section-header {
+             text-align: center;
+             margin-bottom: 50px;
+         }
+         .section-header h2 {
+             font-size: 2.2em;
+             font-weight: 700;
+             color: #117a8b; /* Dark Teal */
+             margin-bottom: 10px;
+             position: relative;
+             display: inline-block;
+             padding-bottom: 10px;
+         }
+         /* Underline effect for section titles */
+         .section-header h2::after {
+             content: '';
+             position: absolute;
+             bottom: 0;
+             left: 50%;
+             transform: translateX(-50%);
+             width: 60px;
+             height: 3px;
+             background-color: #17a2b8; /* Teal */
+             border-radius: 2px;
+         }
+         .section-header p {
+             font-size: 1.1em;
+             color: #6c757d; /* Muted text color */
+             max-width: 700px;
+             margin: 0 auto;
+         }
+
+
+        /* --- Hero Section --- */
+        .hero-section {
+            background: linear-gradient(135deg, #17a2b8 0%, #117a8b 100%);
+            color: #ffffff;
+            padding: 80px 0;
+            text-align: center;
+            opacity: 1; /* Hero visible immediately */
+            transform: none;
+            transition: none;
+        }
+        .hero-section h1 {
+            font-size: 3.2em;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -1.5px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        .hero-section .intro-text {
+            font-size: 1.25em;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+
+        /* --- Content Grid for Cards/Tools --- */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsive grid */
+            gap: 35px; /* Space between cards */
+            margin-top: 40px;
+        }
+
+        /* --- Tool Card Styling --- */
+        .tool-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e9ecef;
+            display: flex;
+            flex-direction: column; /* Stack content vertically */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0; /* Hidden for scroll animation */
+            transform: translateY(40px);
+            border-bottom: 4px solid #17a2b8; /* Bottom accent */
+        }
+        .tool-card.is-visible {
+             opacity: 1;
+             transform: translateY(0);
+             transition-property: opacity, transform;
+             transition-duration: 0.6s;
+             transition-timing-function: ease-out;
+             transition-delay: calc(var(--card-index) * 0.1s); /* Stagger animation */
+        }
+
+
+        .tool-card:hover {
+            transform: translateY(-8px); /* Lift card more on hover */
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-card .card-icon {
+            font-size: 2.5em;
+            color: #17a2b8; /* Teal icon */
+            margin-bottom: 20px;
+            line-height: 1;
+             height: 40px; /* Ensure consistent height */
+             text-align: left;
+        }
+
+        .tool-card h3 {
+            color: #117a8b; /* Dark Teal */
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .tool-card p {
+            color: #495057;
+            margin-bottom: 20px;
+            flex-grow: 1; /* Make paragraphs fill available space */
+            font-size: 1em;
+        }
+
+        .tool-card ul {
+             list-style: none;
+             padding-left: 0;
+             margin-bottom: 20px;
+             flex-grow: 1;
+         }
+         .tool-card li {
+             margin-bottom: 10px;
+             position: relative;
+             padding-left: 25px;
+             color: #495057;
+         }
+         .tool-card li::before {
+             content: "\f00c"; /* FontAwesome check icon */
+             font-family: "Font Awesome 6 Free";
+             font-weight: 900;
+             position: absolute;
+             left: 0;
+             top: 2px;
+             color: #17a2b8; /* Teal check */
+             font-size: 0.9em;
+         }
+
+        .tool-card .card-footer {
+            margin-top: auto; /* Push footer to bottom */
+            padding-top: 15px;
+            border-top: 1px solid #f1f3f5;
+        }
+
+        .btn-visit {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #17a2b8;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            font-size: 0.95em;
+        }
+        .btn-visit i { /* Icon inside button */
+             margin-left: 8px;
+             font-size: 0.9em;
+        }
+        .btn-visit:hover {
+            background-color: #138496;
+             transform: scale(1.03);
+        }
+         .btn-visit:active {
+             transform: scale(0.98);
+         }
+
+        /* --- Naman's Hub Specific Section --- */
+        .namans-cite-section {
+             background-color: #e2f7fa; /* Light teal background */
+             border-radius: 8px;
+             padding: 40px;
+             margin-top: 30px; /* Spacing from grid */
+        }
+        .namans-cite-section h3 {
+             color: #117a8b;
+             font-size: 1.6em;
+             margin-bottom: 20px;
+             text-align: center;
+        }
+         .citation-example-block {
+            position: relative;
+            background-color: #ffffff;
+            padding: 20px 25px;
+             padding-right: 90px; /* Space for button */
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1em;
+            color: #495057;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            border: 1px solid #ced4da;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 15px;
+        }
+         .copy-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 8px 15px;
+            font-size: 0.9em;
+            font-weight: 600;
+            color: #fff;
+            background-color: #17a2b8;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 1;
+        }
+         .copy-btn i { margin-right: 5px; }
+        .copy-btn:hover { background-color: #138496; }
+        .copy-btn:active { transform: scale(0.95); }
+        .copy-btn.copied {
+             background-color: #28a745; /* Green */
+             cursor: default;
+         }
+         .namans-cite-section .note {
+             font-size: 0.95em;
+             color: #555;
+             text-align: center;
+             margin-top: 10px;
+         }
+
+
+        /* --- Tips Section (List Format) --- */
+        .tips-list {
+            list-style: none;
+            padding-left: 0;
+            max-width: 800px;
+            margin: 30px auto 0 auto;
+        }
+        .tips-list li {
+             background-color: #fff;
+             margin-bottom: 15px;
+             padding: 20px 25px;
+             border-radius: 8px;
+             box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+             display: flex;
+             align-items: center;
+             transition: transform 0.2s ease, box-shadow 0.2s ease;
+             opacity: 0; /* For scroll animation */
+             transform: translateX(-30px); /* Animate from left */
+        }
+        .tips-list li.is-visible {
+             opacity: 1;
+             transform: translateX(0);
+             transition-property: opacity, transform;
+             transition-duration: 0.5s;
+             transition-timing-function: ease-out;
+             transition-delay: calc(var(--tip-index) * 0.1s); /* Stagger */
+        }
+        .tips-list li:hover {
+             transform: scale(1.02);
+             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .tips-list .tip-icon {
+            font-size: 1.5em;
+            color: #17a2b8;
+            margin-right: 20px;
+             min-width: 30px; /* Ensure space */
+             text-align: center;
+        }
+        .tips-list .tip-text strong {
+             color: #117a8b;
+             font-weight: 600;
+        }
+         .tips-list .tip-text {
+             color: #495057;
+         }
+
+
+        /* --- Footer --- */
+        .site-footer {
+            background-color: #343a40; /* Dark footer */
+            color: #adb5bd; /* Lighter text */
+            padding: 40px 0;
+            margin-top: 60px;
+            font-size: 0.95em;
+            text-align: center;
+        }
+         .site-footer p {
+             margin-bottom: 10px;
+         }
+        .site-footer a {
+            color: #17a2b8; /* Teal links */
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .site-footer a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 1200px) {
+             .container { max-width: 95%; }
+        }
+         @media (max-width: 992px) {
+             .hero-section h1 { font-size: 2.8em; }
+             .hero-section .intro-text { font-size: 1.15em; }
+             .section-header h2 { font-size: 2em; }
+             .tools-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+             .tool-card { padding: 25px; }
+         }
+         @media (max-width: 768px) {
+             body { line-height: 1.6; }
+             .hero-section { padding: 60px 0; }
+             .hero-section h1 { font-size: 2.4em; }
+             .hero-section .intro-text { font-size: 1.1em; }
+             .section { padding: 50px 0; }
+             .section-header h2 { font-size: 1.8em; }
+             .section-header p { font-size: 1em; }
+             .tools-grid { grid-template-columns: 1fr; gap: 25px; } /* Stack cards */
+             .namans-cite-section { padding: 30px; }
+             .namans-cite-section h3 { font-size: 1.4em; }
+             .citation-example-block { font-size: 0.9em; padding: 15px; padding-right: 80px; }
+             .copy-btn { padding: 7px 12px; font-size: 0.85em; top: 10px; right: 10px; }
+             .tips-list li { padding: 15px 20px; flex-direction: column; align-items: flex-start; text-align: left;}
+             .tips-list .tip-icon { margin-right: 0; margin-bottom: 10px; font-size: 1.3em;}
+             .site-footer { margin-top: 40px; padding: 30px 0;}
+         }
+          @media (max-width: 576px) {
+             .hero-section h1 { font-size: 2em; }
+             .hero-section .intro-text { font-size: 1em; }
+             .section-header h2 { font-size: 1.6em; }
+             .tool-card { padding: 20px; }
+             .tool-card h3 { font-size: 1.3em; }
+             .tool-card p, .tool-card li { font-size: 0.95em; }
+             .btn-visit { padding: 8px 15px; font-size: 0.9em; }
+             .tips-list li { padding: 15px; }
+             .citation-example-block { font-size: 0.85em; }
+          }
+
+    </style>
+</head>
+<body>
+
+    <header class="hero-section">
+        <div class="container">
+            <h1>Master Your Citations</h1>
+            <p class="intro-text">
+                Accurate referencing is crucial. Discover essential tools, understand citation styles, and learn best practices to ensure academic integrity in your submissions to Naman's Hub.
+            </p>
+            <!-- Optional: Add a subtle icon here if desired -->
+        </div>
+    </header>
+
+    <main>
+        <!-- Importance Section -->
+        <section class="section" id="importance">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Why Proper Citation Matters</h2>
+                    <p>Beyond avoiding plagiarism, good citation practices strengthen your research and contribute to the scholarly community.</p>
+                </div>
+                <!-- Using simple cards for importance points -->
+                <div class="tools-grid">
+                     <article class="tool-card">
+                         <div class="card-icon"><i class="fa-solid fa-award"></i></div>
+                         <h3>Acknowledge Sources</h3>
+                         <p>Give credit where it's due, respecting the intellectual property of fellow researchers.</p>
+                     </article>
+                     <article class="tool-card">
+                         <div class="card-icon"><i class="fa-solid fa-book-open-reader"></i></div>
+                         <h3>Enable Verification</h3>
+                         <p>Allow readers to easily find and consult the original works you've referenced.</p>
+                     </article>
+                      <article class="tool-card">
+                         <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                         <h3>Build Credibility</h3>
+                         <p>Support your arguments and demonstrate the foundation of your research with reliable sources.</p>
+                     </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Naman's Hub Requirements Section -->
+        <section class="section" id="namans-requirements">
+             <div class="container">
+                <div class="section-header">
+                    <h2>Citing for Naman's Hub</h2>
+                    <p>Ensure your manuscript adheres to our preferred styles and accurately cites any articles from our publications.</p>
+                </div>
+                <div class="namans-cite-section">
+                    <h3>Preferred Styles & Example</h3>
+                    <p style="text-align:center; color: #495057; margin-bottom: 25px;">We primarily accept <strong>APA, MLA, Chicago,</strong> or <strong>Vancouver</strong> styles. Maintain consistency. Here's a sample Naman's Hub article citation (APA format):</p>
+                    <div class="citation-example-block" id="citation-example-text">Author, A. A., & Author, B. B. (Year). Title of the article: Subtitle if needed. <em>Naman's Hub Journal of Excellence</em>, Volume(Issue), PageRange OR ArticleID. https://doi.org/xxxx/journal.xxxxxx</div>
+                    <button class="copy-btn" data-clipboard-target="#citation-example-text">
+                        <i class="fa-regular fa-copy"></i> Copy Example
+                    </button>
+                    <p class="note"><em>Adjust formatting based on your chosen style guide. Always include the DOI when available.</em></p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Citation Tools Section -->
+        <section class="section" id="citation-tools">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Helpful Citation Tools</h2>
+                    <p>Leverage these online generators and reference managers to streamline your citation process.</p>
+                </div>
+
+                <div class="tools-grid">
+                    <!-- ZoteroBib -->
+                    <article class="tool-card">
+                        <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <h3>ZoteroBib</h3>
+                        <p>A free, quick web-based citation generator. Great for creating bibliographies on the fly without installing software.</p>
+                        <div class="card-footer">
+                            <a href="https://www.zotero.org/bib" target="_blank" rel="noopener noreferrer" class="btn-visit">Visit ZoteroBib <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </article>
+
+                     <!-- MyBib -->
+                    <article class="tool-card">
+                        <div class="card-icon"><i class="fa-solid fa-book"></i></div>
+                        <h3>MyBib</h3>
+                        <p>Free and user-friendly citation generator with browser extensions to easily save sources while browsing.</p>
+                         <div class="card-footer">
+                            <a href="https://www.mybib.com/" target="_blank" rel="noopener noreferrer" class="btn-visit">Visit MyBib <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Zotero -->
+                    <article class="tool-card">
+                        <div class="card-icon"><i class="fa-solid fa-database"></i></div>
+                        <h3>Zotero</h3>
+                        <p>Powerful, free, open-source reference management software. Collect, organize, cite, and sync references across devices.</p>
+                        <div class="card-footer">
+                             <a href="https://www.zotero.org/" target="_blank" rel="noopener noreferrer" class="btn-visit">Visit Zotero <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </article>
+
+                     <!-- Mendeley -->
+                    <article class="tool-card">
+                         <div class="card-icon"><i class="fa-solid fa-flask-vial"></i></div>
+                        <h3>Mendeley</h3>
+                        <p>A popular free reference manager combined with an academic social network. Good for discovering papers and collaboration.</p>
+                         <div class="card-footer">
+                            <a href="https://www.mendeley.com/" target="_blank" rel="noopener noreferrer" class="btn-visit">Visit Mendeley <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- EndNote -->
+                    <article class="tool-card">
+                        <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <h3>EndNote</h3>
+                        <p>Comprehensive commercial reference management software with advanced features, often provided by institutions.</p>
+                         <div class="card-footer">
+                            <a href="https://endnote.com/" target="_blank" rel="noopener noreferrer" class="btn-visit">Visit EndNote <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Style Guides -->
+                     <article class="tool-card">
+                        <div class="card-icon"><i class="fa-solid fa-pen-ruler"></i></div>
+                        <h3>Official Style Guides</h3>
+                        <p>When in doubt, always consult the official documentation for your chosen style (APA, MLA, Chicago, etc.). Purdue OWL is also a great resource.</p>
+                        <div class="card-footer">
+                            <a href="https://owl.purdue.edu/owl/research_and_citation/resources.html" target="_blank" rel="noopener noreferrer" class="btn-visit">Visit Purdue OWL <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+         <!-- Tips Section -->
+        <section class="section" id="citation-tips">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Citation Best Practices</h2>
+                    <p>Follow these essential tips for accurate and consistent referencing in your work.</p>
+                </div>
+                <ul class="tips-list">
+                    <li class="tip-item">
+                        <span class="tip-icon"><i class="fa-solid fa-check-double"></i></span>
+                        <span class="tip-text"><strong>Consistency is Crucial:</strong> Choose one style guide (e.g., APA, MLA) and apply it uniformly throughout your paper.</span>
+                    </li>
+                    <li class="tip-item">
+                         <span class="tip-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                         <span class="tip-text"><strong>Verify Every Detail:</strong> Double-check author names, publication years, titles, page numbers, DOIs, and punctuation against your source.</span>
+                    </li>
+                    <li class="tip-item">
+                         <span class="tip-icon"><i class="fa-solid fa-link"></i></span>
+                         <span class="tip-text"><strong>Match In-Text and List:</strong> Ensure every source cited in your text appears in the reference list, and vice-versa. No orphans!</span>
+                    </li>
+                     <li class="tip-item">
+                         <span class="tip-icon"><i class="fa-solid fa-book-bookmark"></i></span>
+                         <span class="tip-text"><strong>Cite Extensively:</strong> Reference all borrowed ideas, paraphrased concepts, direct quotes, data, and images that aren't common knowledge.</span>
+                    </li>
+                    <li class="tip-item">
+                         <span class="tip-icon"><i class="fa-solid fa-circle-question"></i></span>
+                         <span class="tip-text"><strong>Consult Official Guides:</strong> Use online generators as aids, but always refer to the official style manual for definitive rules and complex cases.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Need further clarification on citation requirements? Check our full <a href="./author-guidelines.html">Author Guidelines</a> or contact the Naman's Hub Editorial Office.</p>
+            <p><strong>Email:</strong> <a href="mailto:example@example.com">example@example.com</a> (Replace with actual email)</p>
+            <p>© <span id="current-year"></span> Naman's Hub. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Set Current Year in Footer ---
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // --- Intersection Observer for Animations ---
+            const animatedElements = document.querySelectorAll('.section:not(.hero-section), .tool-card, .tips-list li');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Adjust threshold as needed (e.g., 0.1 for 10%)
+            };
+
+            const observerCallback = (entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Add delay based on element type and index for staggering
+                        let delay = 0;
+                        if (entry.target.classList.contains('tool-card')) {
+                            // Calculate index within its grid parent if needed for accuracy
+                            // Simple approach: use the overall index from querySelectorAll
+                            entry.target.style.setProperty('--card-index', index % 6); // Reset delay cycle for rows
+                            delay = (index % 6) * 100; // Stagger cards by 100ms
+                        } else if (entry.target.closest('.tips-list')) {
+                             entry.target.style.setProperty('--tip-index', index); // Use index directly for tips
+                            delay = index * 100; // Stagger tips
+                        }
+
+                        entry.target.style.transitionDelay = `${delay}ms`;
+                        entry.target.classList.add('is-visible');
+
+                        observer.unobserve(entry.target); // Animate only once
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            animatedElements.forEach(el => observer.observe(el));
+
+
+            // --- Copy Button Functionality ---
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetSelector = button.getAttribute('data-clipboard-target');
+                    const targetElement = document.querySelector(targetSelector);
+
+                    if (targetElement) {
+                        const textToCopy = targetElement.textContent || targetElement.innerText;
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            const originalHTML = button.innerHTML; // Store original icon + text
+                            button.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                            button.classList.add('copied');
+                            button.disabled = true;
+
+                            setTimeout(() => {
+                                button.innerHTML = originalHTML; // Restore original
+                                button.classList.remove('copied');
+                                button.disabled = false;
+                            }, 2500); // Reset after 2.5 seconds
+                        }).catch(err => {
+                            console.error('Failed to copy text: ', err);
+                            button.innerHTML = '<i class="fa-solid fa-xmark"></i> Error';
+                             setTimeout(() => {
+                                button.innerHTML = '<i class="fa-regular fa-copy"></i> Copy Example'; // Restore original
+                            }, 2000);
+                        });
+                    } else {
+                        console.error('Clipboard target not found:', targetSelector);
+                    }
+                });
+            });
+
+            console.log("Enhanced Citation Tools page script loaded.");
+
+        }); // End DOMContentLoaded
+    </script>
+
+</body>
+</html>
