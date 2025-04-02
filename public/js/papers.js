@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       date: "2025-04-02",
       citations: 42,
       image: "./images/cover.png?height=200&width=300",
-      pdfLink: "../research-paper-website/research_papers/Naman's Divisor Sum Theorem.pdf", // Add the PDF link here
+      pdfLink: "../public/research_papers/Naman's Divisor Sum Theorem.pdf", // Add the PDF link here
     },
   ]
 
